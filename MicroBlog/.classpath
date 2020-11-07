@@ -8,13 +8,23 @@
 	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
+<<<<<<< HEAD
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="test" value="true"/>
+=======
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+>>>>>>> cf882a402262678354a18642c31d5217f10ff708
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
+<<<<<<< HEAD
+=======
+			<attribute name="module" value="true"/>
+>>>>>>> cf882a402262678354a18642c31d5217f10ff708
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
