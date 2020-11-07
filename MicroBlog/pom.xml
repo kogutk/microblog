@@ -1,31 +1,11 @@
-<<<<<<< HEAD
 <project
 	xmlns="http://maven.apache.org/POM/4.0.0"
-=======
-<project xmlns="http://maven.apache.org/POM/4.0.0"
->>>>>>> cf882a402262678354a18642c31d5217f10ff708
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>pl.wwsis.zpp</groupId>
 	<artifactId>MicroBlog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-<<<<<<< HEAD
-=======
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.9.1</version>
-				<configuration>
-					<port>9000</port>
-					<tempWebappDirectory>${basedir}/target/site/tempdir</tempWebappDirectory>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
->>>>>>> cf882a402262678354a18642c31d5217f10ff708
 
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -42,10 +22,6 @@
 			<artifactId>spark-template-freemarker</artifactId>
 			<version>2.7.1</version>
 		</dependency>
-<<<<<<< HEAD
-=======
-
->>>>>>> cf882a402262678354a18642c31d5217f10ff708
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
@@ -77,15 +53,6 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.9.2</version>
 		</dependency>
-<<<<<<< HEAD
-=======
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.1</version>
-			<scope>test</scope>
-		</dependency>
->>>>>>> cf882a402262678354a18642c31d5217f10ff708
 
 	</dependencies>
 </project>
