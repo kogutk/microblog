@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-@ComponentScan(basePackages = "pl.wwsis.MicroBlog")
+//@ComponentScan(basePackages = "pl.wwsis.MicroBlog")
 public class App 
 {
     public static void main( String[] args )
