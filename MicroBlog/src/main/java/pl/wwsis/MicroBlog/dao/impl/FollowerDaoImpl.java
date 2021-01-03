@@ -31,10 +31,10 @@ public class FollowerDaoImpl implements FollowerDao {
 		int userId = user.getId();
 		int followeeId = followee.getId();
 
-		entityManager.getTransaction().begin();
+		//entityManager.getTransaction().begin();
 		Follower follower = new Follower(userId, followeeId);
 		entityManager.persist(follower);
-		entityManager.getTransaction().commit();
+		//entityManager.getTransaction().commit();
 		return follower;
 	}
 
@@ -64,11 +64,11 @@ public class FollowerDaoImpl implements FollowerDao {
 		FollowerId followerId = new FollowerId(userId, followeeId);
 		Follower follower = entityManager.find(Follower.class, followerId);
 
-		entityManager.getTransaction().begin();
+		//entityManager.getTransaction().begin();
 
 		entityManager.remove(follower);
 
-		entityManager.getTransaction().commit();
+		//entityManager.getTransaction().commit();
 		return follower;
 
 	} // alt as parameter Follower

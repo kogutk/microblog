@@ -1,6 +1,7 @@
 package pl.wwsis.MicroBlog;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+
 
 import java.text.ParseException;
 
@@ -41,6 +42,6 @@ public class AppTest {
 			e.printStackTrace();
 		}
 				
-		assertTrue(userDaoImpl.getUserByLogin(u.getLogin())!=null);
+		assertNotNull(userDaoImpl.getUserByLogin(u.getLogin()));
 	}
 }

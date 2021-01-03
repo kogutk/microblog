@@ -71,10 +71,10 @@ public class PostDaoImpl implements PostDao {
 
 		int userId = user.getId();
 
-		entityManager.getTransaction().begin();
+		//entityManager.getTransaction().begin();
 		Post post = new Post(userId, contentOfThePost, isPublic);
 		entityManager.persist(post);
-		entityManager.getTransaction().commit();
+		//entityManager.getTransaction().commit();
 		return post;
 
 	}

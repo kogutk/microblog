@@ -19,15 +19,13 @@ public class UserDaoImpl implements UserDao {
 	@PersistenceContext
 	EntityManager entityManager;
 
-//	EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "test" );
-//	EntityManager entityManager = emfactory.createEntityManager( );
 
 	@Override
 	public User getUserByLogin(String login) {
 		String queryString = "SELECT u FROM User u " + "WHERE LOWER(u.login) = LOWER(:login)";
 		Query query = entityManager.createQuery(queryString);
 		query.setParameter("login", login);
-		User user = (User) query.getSingleResult(); // dodać unique na loginie?
+		User user = (User) query.getSingleResult(); 
 		return user;
 
 	}
