@@ -19,6 +19,6 @@ public interface PostDao {
 	List<Post> getFullPublicTimeline();
 	
 	/** Method that adds a message to the user */
-	Post addPostOfUser(User user, String contentOfThePost ); 
+	Post addPostOfUser(User user, String contentOfThePost , Boolean isPublic); 
 
 }

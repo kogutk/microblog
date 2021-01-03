@@ -15,7 +15,7 @@ public interface FollowerDao {
 	Follower findFolloweeOfUser(User user, User followee);
 	
 	/** Removing another user from those currently logged in by the user (Removing the "follower" and "followee" pairs) */
-	void deleteFolloweeOfUser(User user, User followee); //alt as parameter Follower
+	Follower deleteFolloweeOfUser(User user, User followee); //alt as parameter Follower
 	
 
 }

@@ -2,12 +2,10 @@ package pl.wwsis.MicroBlog.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import lombok.AllArgsConstructor;
-import lombok.AccessLevel;
 import lombok.Data;
 
 @Data
@@ -31,5 +29,16 @@ public class Post {
     private Boolean isPublic;
 
     public Post() {}
+
+
+	public Post(int authorId, String content, Boolean isPublic) {
+		super();
+		this.authorId = authorId;
+		this.content = content;
+		this.isPublic = isPublic;
+	}
+    
+    
+    
     
 }
