@@ -1,7 +1,8 @@
 package pl.wwsis.MicroBlog.model;
 
+import java.io.Serializable;
 
-public class FollowerId {
+public class FollowerId implements Serializable{
      int id;
      int followsUserId;
 
