@@ -6,11 +6,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Component;
+
 import pl.wwsis.MicroBlog.dao.PostDao;
 import pl.wwsis.MicroBlog.model.Post;
 import pl.wwsis.MicroBlog.model.User;
 
 @Transactional
+@Component
 public class PostDaoImpl implements PostDao {
 
 	@PersistenceContext

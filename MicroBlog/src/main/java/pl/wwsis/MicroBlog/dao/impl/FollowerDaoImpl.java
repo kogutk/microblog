@@ -9,7 +9,10 @@ import pl.wwsis.MicroBlog.model.FollowerId;
 import pl.wwsis.MicroBlog.model.User;
 import javax.transaction.Transactional;
 
+import org.springframework.stereotype.Component;
+
 @Transactional
+@Component
 public class FollowerDaoImpl implements FollowerDao {
 
 	@PersistenceContext
@@ -21,6 +24,7 @@ public class FollowerDaoImpl implements FollowerDao {
 	 * Adding another user to being tracked by the currently logged in user (A pair
 	 * of "follower" and "followee" is created)
 	 */
+	
 	@Override
 	public Follower addFolloweeOfUser(User user, User followee) {
 

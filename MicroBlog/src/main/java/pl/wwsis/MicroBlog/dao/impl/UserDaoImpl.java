@@ -10,7 +10,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import org.springframework.stereotype.Component;
+
 @Transactional
+@Component
 public class UserDaoImpl implements UserDao {
 
 	@PersistenceContext
@@ -32,17 +35,17 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User registerUser(String name, String email, String password, String firstName, String lastName,
 			Character gender, String dob) throws ParseException {
-
+		System.out.println("registerUser");
 		String pattern = "yyyy-mm-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		Date d = simpleDateFormat.parse(dob);
 
-		entityManager.getTransaction().begin();
+//		entityManager.getTransaction().begin();
 
 		User user = new User(name, email, password, firstName, lastName, gender, d);
 		entityManager.persist(user);
 
-		entityManager.getTransaction().commit();
+//		entityManager.getTransaction().commit();
 		return user;
 
 	}
