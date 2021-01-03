@@ -28,7 +28,12 @@ public class Post {
     @Column(name = "isPublic")
     private Boolean isPublic;
 
-    public Post() {}
+    public String getContent() {
+		return content;
+	}
+
+
+	public Post() {}
 
 
 	public Post(int authorId, String content, Boolean isPublic) {

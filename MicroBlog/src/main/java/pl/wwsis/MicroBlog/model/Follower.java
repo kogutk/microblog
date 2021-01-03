@@ -27,7 +27,17 @@ public class Follower {
     @Column(name = "followsUserId")
     private int followsUserId;
 
-    public Follower() {}
+    public int getId() {
+	return id;
+}
+
+
+public int getFollowsUserId() {
+	return followsUserId;
+}
+
+
+	public Follower() {}
 
 
 	public Follower(int id, int followsUserId) {

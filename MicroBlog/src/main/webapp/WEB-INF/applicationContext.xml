@@ -37,6 +37,7 @@
                     <prop key="hibernate.hbm2ddl.auto">update</prop>
                 </props>
             </property>
+           
         </bean>
         <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
         <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>

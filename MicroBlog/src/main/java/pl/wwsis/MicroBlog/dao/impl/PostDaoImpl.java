@@ -1,5 +1,6 @@
 package pl.wwsis.MicroBlog.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import pl.wwsis.MicroBlog.dao.PostDao;
+import pl.wwsis.MicroBlog.model.Follower;
 import pl.wwsis.MicroBlog.model.Post;
 import pl.wwsis.MicroBlog.model.User;
 
@@ -20,20 +22,27 @@ public class PostDaoImpl implements PostDao {
 	@PersistenceContext
 	EntityManager entityManager;
 
+	@SuppressWarnings("unchecked")
 	@Override
 
 	/** Method that retrieves all messages for a selected user (user's Timeline) */
 	public List<Post> getTimelineOfUser(User user) {
 		int userId = user.getId();
-		String queryString = "SELECT * FROM Post WHERE AuthorId=:id";
+		String queryString = "SELECT p FROM Post p WHERE p.authorId=:id";
 		Query query = entityManager.createQuery(queryString);
 		query.setParameter("id", userId);
-		@SuppressWarnings("unchecked")
-		List<Post> postList = (List<Post>) query.getResultList();
+		
+		List<Post> postList = null;
+		try {
+		
+		postList = (List<Post>) query.getResultList();
+		}
+		catch (Exception e) {e.printStackTrace();}
+		System.out.println(postList!=null);
 		return postList;
 
 	}
-
+	@SuppressWarnings("unchecked")
 	@Override
 	/**
 	 * Method that downloads all my messages (published by me) and all messages of
@@ -41,11 +50,20 @@ public class PostDaoImpl implements PostDao {
 	 */
 	public List<Post> getFullTimelineOfUser(User user) {
 		int userId = user.getId();
-		String queryString = "SELECT * FROM Post WHERE authorId=:id OR authorId in (SELECT followsUserId FROM Follower where userId=:id)";
+
+		
+		String queryString = "SELECT p FROM Post p WHERE p.authorId=:id OR p.authorId IN (SELECT followsUserId FROM Follower f WHERE f.id=:id)";
 		Query query = entityManager.createQuery(queryString);
 		query.setParameter("id", userId);
-		@SuppressWarnings("unchecked")
-		List<Post> postList = (List<Post>) query.getResultList();
+
+		
+		List<Post> postList =null;
+		try {
+		postList = (List<Post>) query.getResultList();
+
+		
+		}
+		catch (Exception e) {e.printStackTrace();}
 		return postList;
 
 	}
@@ -56,11 +74,27 @@ public class PostDaoImpl implements PostDao {
 	 * Full Public Timeline)
 	 */
 	public List<Post> getFullPublicTimeline() {
-		String queryString = "SELECT * FROM Post WHERE isPublic=1";
+		String queryString = "SELECT p FROM Post p WHERE p.isPublic=1";
 		Query query = entityManager.createQuery(queryString);
 		@SuppressWarnings("unchecked")
 		List<Post> postList = (List<Post>) query.getResultList();
 		return postList;
+
+	}
+	
+	
+	/**
+	 * Method that retrieves all messages from all users (it is displaying user's
+	 * Full Public Timeline)
+	 */
+	public void deleteAllPosts() {
+		
+		String queryString = "DELETE FROM Post";
+
+		Query query = entityManager.createQuery(queryString);
+		
+		query.executeUpdate();
+		
 
 	}
 

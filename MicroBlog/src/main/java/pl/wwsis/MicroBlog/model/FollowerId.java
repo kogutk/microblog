@@ -12,5 +12,5 @@ public class FollowerId implements Serializable{
 		this.followsUserId = followsUserId;
 	}
 
-     
+     public FollowerId() {};
 }

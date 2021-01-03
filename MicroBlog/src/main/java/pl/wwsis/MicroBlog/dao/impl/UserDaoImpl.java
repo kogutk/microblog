@@ -22,7 +22,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User getUserByLogin(String login) {
-		String queryString = "SELECT u FROM User u " + "WHERE LOWER(u.login) = LOWER(:login)";
+		String queryString = "SELECT u FROM User u WHERE LOWER(u.login) = LOWER(:login)";
 		Query query = entityManager.createQuery(queryString);
 		query.setParameter("login", login);
 		User user = (User) query.getSingleResult(); 
@@ -33,17 +33,14 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User registerUser(String name, String email, String password, String firstName, String lastName,
 			Character gender, String dob) throws ParseException {
-		System.out.println("registerUser");
+		
 		String pattern = "yyyy-mm-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		Date d = simpleDateFormat.parse(dob);
 
-//		entityManager.getTransaction().begin();
-
 		User user = new User(name, email, password, firstName, lastName, gender, d);
 		entityManager.persist(user);
 
-//		entityManager.getTransaction().commit();
 		return user;
 
 	}
