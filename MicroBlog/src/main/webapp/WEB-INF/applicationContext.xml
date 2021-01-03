@@ -18,7 +18,7 @@
         <context:annotation-config/>      
         <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
             <property name="driverClassName" value="org.hsqldb.jdbcDriver"></property>
-            <property name="url" value="jdbc:hsqldb:hsql://localhost:9001/testdb"></property>
+            <property name="url" value="jdbc:hsqldb:mem:testdb"></property>
             <property name="username" value="SA"></property>
             <property name="password" value=""></property>
         </bean>

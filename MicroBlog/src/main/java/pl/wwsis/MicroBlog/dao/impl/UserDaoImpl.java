@@ -24,7 +24,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User getUserByLogin(String login) {
-		String queryString = "SELECT u FROM User u " + "WHERE LOWER(u.name) = LOWER(:login)";
+		String queryString = "SELECT u FROM User u " + "WHERE LOWER(u.login) = LOWER(:login)";
 		Query query = entityManager.createQuery(queryString);
 		query.setParameter("login", login);
 		User user = (User) query.getSingleResult(); // dodać unique na loginie?

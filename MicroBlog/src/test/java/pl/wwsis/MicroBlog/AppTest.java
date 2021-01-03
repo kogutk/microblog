@@ -28,16 +28,10 @@ public class AppTest {
 	@Autowired
     private PostDaoImpl postDaoImpl;
 
-	@Test
-	public void shouldAnswerWithTrue() {
-		System.out.println("test");
-		assertTrue(true);
-	}
+
 	
 	@Test
-	public void shouldGiveUser() {
-//		registerUser(String name, String email, String password, String firstName, String lastName,
-//		Character gender, String dob)
+	public void shouldRegisterAndGetUserByLogin() {
 		
 		User u = null;
 		try {
@@ -46,9 +40,7 @@ public class AppTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("test");
-		
-		System.out.println(u.getLogin());
-		assertTrue(true);
+				
+		assertTrue(userDaoImpl.getUserByLogin(u.getLogin())!=null);
 	}
 }
