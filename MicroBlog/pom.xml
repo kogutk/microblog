@@ -12,16 +12,8 @@
 		<hibernate.version>5.2.10.Final</hibernate.version>
 		<spring.version>5.3.2</spring.version>
 		<spring-boot.version>2.3.7.RELEASE</spring-boot.version>
-
 	</properties>
 	<dependencies>
-		<!-- test -->
-		<!-- <dependency> -->
-		<!-- <groupId>junit</groupId> -->
-		<!-- <artifactId>junit</artifactId> -->
-		<!-- <version>4.13.1</version> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
@@ -34,7 +26,6 @@
 			<version>3.8.0</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
@@ -46,12 +37,6 @@
 			<artifactId>byte-buddy-dep</artifactId>
 			<version>1.9.3</version>
 		</dependency>
-
-
-
-		<!-- test -->
-
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -82,7 +67,6 @@
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>2.4.1</version>
-
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -119,7 +103,6 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
@@ -156,13 +139,20 @@
 			<artifactId>jaxb-api</artifactId>
 			<version>2.3.1</version>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>mysql</groupId> -->
-		<!-- <artifactId>mysql-connector-java</artifactId> -->
-		<!-- <version>5.1.6</version> -->
-		<!-- </dependency> -->
-
-
-
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.13.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.el</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 	</dependencies>
 </project>
