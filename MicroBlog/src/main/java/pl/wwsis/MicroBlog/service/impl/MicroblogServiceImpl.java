@@ -42,6 +42,11 @@ public class MicroblogServiceImpl implements MicroblogService {
 		List<Post> postsList = postDaoImpl.getFullPublicTimeline();
 		return postsList;
 	}
+	
+	@Override
+	public void deleteAllPosts() {
+		postDaoImpl.deleteAllPosts();
+	}	
 
 	@Override
 	public Post createNewPost(User user, String content, Boolean isPublic) {
@@ -83,5 +88,5 @@ public class MicroblogServiceImpl implements MicroblogService {
 	public Follower deleteFolloweeOfUser(User user, User followee) {
 		Follower deletedFollower = followerDaoImpl.deleteFolloweeOfUser(user, followee);
 		return deletedFollower;
-	}	
+	}
 }

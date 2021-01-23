@@ -36,6 +36,11 @@ public interface MicroblogService {
 	List<Post> getAllPosts();
 	
 	/**
+	 * Delete all posts
+	 */
+	void deleteAllPosts();
+	
+	/**
 	 * Create new post with content and isPublic flag
 	 * @param user
 	 * @param content

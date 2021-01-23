@@ -58,7 +58,27 @@ public class TestMicroblogServiceImpl {
 	}
 	
 	@Test
+	public void TestShouldDeleteAllPosts() {
+		//when
+		User testUser2 = microblogServiceImpl.registerUser("testowyLogin_606", "test606@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
+		User testUser3 = microblogServiceImpl.registerUser("testowyLogin_707", "test707@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
+		
+		microblogServiceImpl.createNewPost(testUser2, "testowyPost2", true);
+		microblogServiceImpl.createNewPost(testUser2, "testowyPost21", false);
+		microblogServiceImpl.createNewPost(testUser3, "testowyPostUser3", true);
+		
+		
+		microblogServiceImpl.deleteAllPosts();
+		List<Post> listWithAllPosts = microblogServiceImpl.getAllPosts();	
+		//then
+		assertEquals(0, listWithAllPosts.size());
+	}
+	
+	@Test
 	public void TestShouldGetAllPosts() {
+		//removed all posts
+		microblogServiceImpl.deleteAllPosts();
+		
 		//when
 		User testUser4 = microblogServiceImpl.registerUser("testowyLogin_4", "test4@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		User testUser5 = microblogServiceImpl.registerUser("testowyLogin_5", "test5@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
