@@ -7,7 +7,7 @@ import java.text.ParseException;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -22,7 +22,7 @@ import pl.wwsis.MicroBlog.model.User;
 
 @SpringBootTest(classes = pl.wwsis.MicroBlog.App.class)
 
-class TestFollowerDaoImpl {
+public class TestFollowerDaoImpl {
 	
 	@Autowired
 	FollowerDaoImpl followerDaoImpl;
@@ -30,16 +30,16 @@ class TestFollowerDaoImpl {
 	@Autowired
 	UserDaoImpl userDaoImpl;
 	
-	@BeforeEach
-	void setUp() throws Exception {
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-	}
+//	@BeforeEach
+//	void setUp() throws Exception {
+//	}
+//
+//	@AfterEach
+//	void tearDown() throws Exception {
+//	}
 
 	@Test
-	void TestAddFolloweeOfUser() {
+	public void TestAddFolloweeOfUser() {
 		try {
 			
 			User testUser_1 = userDaoImpl.registerUser("testowyLogin_11", "test_11@test.com", "123pasS456ss", "Jan", "Kowalski", 'F', "1990-01-01");
@@ -55,7 +55,7 @@ class TestFollowerDaoImpl {
 	}
 	
 	@Test
-	void TestFindFolloweeOfUser() {
+	public void TestFindFolloweeOfUser() {
 		try {
 		User testUser_1 = userDaoImpl.registerUser("testowyLogin_13", "test13@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
 		User testUser_2 = userDaoImpl.registerUser("testowyLogin_14", "test14@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
@@ -69,7 +69,7 @@ class TestFollowerDaoImpl {
 	}
 	
 	@Test
-	void TestDeleteFolloweeOfUser() {
+	public void TestDeleteFolloweeOfUser() {
 		try {
 			User testUser_1 = userDaoImpl.registerUser("testowyLogin_15", "test15@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
 			User testUser_2 = userDaoImpl.registerUser("testowyLogin_16", "test16@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");

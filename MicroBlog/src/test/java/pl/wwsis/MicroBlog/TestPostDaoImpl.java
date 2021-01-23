@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +24,7 @@ import pl.wwsis.MicroBlog.model.User;
 
 @SpringBootTest(classes = pl.wwsis.MicroBlog.App.class)
 
-class TestPostDaoImpl {
+public class TestPostDaoImpl {
 	
 	@Autowired
 	PostDaoImpl postDaoImpl;
@@ -41,7 +41,7 @@ class TestPostDaoImpl {
 //	}
 
 	@Test
-	void TestGetTimelineOfUser() {
+	public void TestGetTimelineOfUser() {
 		
 		try {
 		User testUser = userDaoImpl.registerUser("testowyLogin_21", "test21@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");		
@@ -55,7 +55,7 @@ class TestPostDaoImpl {
 	}
 	
 	@Test
-	void TestGetFullTimelineOfUser() {
+	public void TestGetFullTimelineOfUser() {
 		List<Post> postListTest = new ArrayList<>();
 		try {
 			User testUser = userDaoImpl.registerUser("testowyLogin_22", "test22@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");		
@@ -73,7 +73,7 @@ class TestPostDaoImpl {
 	}
 	
 	@Test
-	void TestGetFullPublicTimelinee() {
+	public void TestGetFullPublicTimelinee() {
 		List<Post> postListTest = new ArrayList<>();
 		postDaoImpl.deleteAllPosts();
 		try {
@@ -91,7 +91,7 @@ class TestPostDaoImpl {
 	}
 	
 	@Test
-	void TestDeleteAllPosts() {
+	public void TestDeleteAllPosts() {
 		List<Post> postListTest = new ArrayList<>();
 		try {
 			User testUser = userDaoImpl.registerUser("testowyLogin_24", "test24@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");		
@@ -108,7 +108,7 @@ class TestPostDaoImpl {
 	}
 	
 	@Test
-	void TestAddPostOfUser() {
+	public void TestAddPostOfUser() {
 		try {
 			User testUser = userDaoImpl.registerUser("testowyLogin_25", "test25@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");		
 			Post testPost = postDaoImpl.addPostOfUser(testUser, "testowyPost123", true);
