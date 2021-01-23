@@ -7,7 +7,7 @@ import java.text.ParseException;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -22,7 +22,7 @@ import pl.wwsis.MicroBlog.model.User;
 
 @SpringBootTest(classes = pl.wwsis.MicroBlog.App.class)
 
-class TestFollowerDaoImpl {
+public class TestFollowerDaoImpl {
 	
 	@Autowired
 	FollowerDaoImpl followerDaoImpl;
@@ -30,19 +30,21 @@ class TestFollowerDaoImpl {
 	@Autowired
 	UserDaoImpl userDaoImpl;
 	
-	@BeforeEach
-	void setUp() throws Exception {
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-	}
+//	@BeforeEach
+//	void setUp() throws Exception {
+//	}
+//
+//	@AfterEach
+//	void tearDown() throws Exception {
+//	}
 
 	@Test
-	void TestAddFolloweeOfUser() {
+	public void TestAddFolloweeOfUser() {
 		try {
-			User testUser_1 = userDaoImpl.registerUser("testowyLogin_1", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
-			User testUser_2 = userDaoImpl.registerUser("testowyLogin_2", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
+			
+			User testUser_1 = userDaoImpl.registerUser("testowyLogin_11", "test_11@test.com", "123pasS456ss", "Jan", "Kowalski", 'F', "1990-01-01");
+			System.out.print("**** **** TEST");
+			User testUser_2 = userDaoImpl.registerUser("testowyLogin_12", "test_12@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
 			
 			Follower follower = followerDaoImpl.addFolloweeOfUser(testUser_1, testUser_2);
 			assertEquals(follower.getFollowsUserId(), testUser_2.getId());
@@ -53,10 +55,10 @@ class TestFollowerDaoImpl {
 	}
 	
 	@Test
-	void TestFindFolloweeOfUser() {
+	public void TestFindFolloweeOfUser() {
 		try {
-		User testUser_1 = userDaoImpl.registerUser("testowyLogin_1", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
-		User testUser_2 = userDaoImpl.registerUser("testowyLogin_2", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
+		User testUser_1 = userDaoImpl.registerUser("testowyLogin_13", "test13@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+		User testUser_2 = userDaoImpl.registerUser("testowyLogin_14", "test14@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
 		
 		Follower follower = followerDaoImpl.addFolloweeOfUser(testUser_1, testUser_2);
 		assertEquals(follower.getFollowsUserId(), testUser_2.getId());
@@ -67,15 +69,16 @@ class TestFollowerDaoImpl {
 	}
 	
 	@Test
-	void TestDeleteFolloweeOfUser() {
+	public void TestDeleteFolloweeOfUser() {
 		try {
-			User testUser_1 = userDaoImpl.registerUser("testowyLogin_1", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
-			User testUser_2 = userDaoImpl.registerUser("testowyLogin_2", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser_1 = userDaoImpl.registerUser("testowyLogin_15", "test15@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser_2 = userDaoImpl.registerUser("testowyLogin_16", "test16@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
 			
 			Follower follower = followerDaoImpl.addFolloweeOfUser(testUser_1, testUser_2);
 			assertEquals(follower.getFollowsUserId(), testUser_2.getId());
 			Follower removedFollower = followerDaoImpl.deleteFolloweeOfUser(testUser_1, testUser_2);
-			assertEquals(removedFollower.getFollowsUserId(), testUser_1.getId());
+			assertEquals(removedFollower.getFollowsUserId(), testUser_2.getId());
+			assertNotEquals(removedFollower.getFollowsUserId(), testUser_1.getId());
 			
 		} catch (ParseException e) {
 			e.printStackTrace();

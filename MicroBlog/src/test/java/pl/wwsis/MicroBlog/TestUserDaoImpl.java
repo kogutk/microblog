@@ -6,7 +6,7 @@ import java.text.ParseException;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +19,7 @@ import pl.wwsis.MicroBlog.model.User;
 @RunWith(SpringRunner.class)
 
 @SpringBootTest(classes = pl.wwsis.MicroBlog.App.class)
-class TestUserDaoImpl {
+public class TestUserDaoImpl {
 	
 	@Autowired
 	UserDaoImpl userDaoImpl;
@@ -33,9 +33,9 @@ class TestUserDaoImpl {
 	}
 	
 	@Test
-	void TestRegisterUser() {
+	public void TestRegisterUser() {
 		try {
-			User testuser = userDaoImpl.registerUser("testowyLogin_1", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testuser = userDaoImpl.registerUser("testowyLogin_1", "test1@test.com", "passssswS9", "Jan", "Kowalski", 'M', "1990-01-01");
 			assertEquals(testuser.getLogin(), "testowyLogin_1");
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -44,10 +44,10 @@ class TestUserDaoImpl {
 	}
 	
 	@Test
-	void TestGetUserByLogin() {
+	public void TestGetUserByLogin() {
 		try {
-		User testUser = userDaoImpl.registerUser("testowyLogin", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
-		assertEquals(testUser, userDaoImpl.getUserByLogin(testUser.getLogin()));
+		User testUser = userDaoImpl.registerUser("testowyLogin_2", "test2@test.com", "passssssS9sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+		assertEquals(testUser.getLogin(), userDaoImpl.getUserByLogin(testUser.getLogin()).getLogin());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
