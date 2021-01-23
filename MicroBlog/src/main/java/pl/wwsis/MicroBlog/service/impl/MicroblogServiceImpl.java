@@ -11,7 +11,7 @@ import pl.wwsis.MicroBlog.dao.impl.UserDaoImpl;
 import pl.wwsis.MicroBlog.model.Follower;
 import pl.wwsis.MicroBlog.model.Post;
 import pl.wwsis.MicroBlog.model.User;
-import pl.wwsis.MicroBlog.servicE.MicroblogService;
+import pl.wwsis.MicroBlog.service.MicroblogService;
 
 public class MicroblogServiceImpl implements MicroblogService {
 
