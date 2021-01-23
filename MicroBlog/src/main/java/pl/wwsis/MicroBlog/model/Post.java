@@ -37,7 +37,15 @@ public class Post {
 	public String getContent() {
 		return content;
 	}
-
+		
+	public Boolean isPublic() {
+		return isPublic;
+	}
+	
+	public Integer authorId() {
+		return authorId;
+	}
+	
 	public Post() {
 	}
 

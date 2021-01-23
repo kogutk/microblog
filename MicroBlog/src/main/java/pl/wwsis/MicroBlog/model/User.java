@@ -67,11 +67,15 @@ public class User {
 	@Column(name = "statusId")
 	private UserStatus status;
 
+	private int amountOfFollowers;
+
+	private int amountOfFollowee;
+
 	public User() {
 	}
 
 	public User(String login, String email, String password, String firstName, String lastName, Character gender,
-			Date dob) {
+			Date dob, Integer amountOfFollowers, Integer amountOfFollowee) {
 
 		this.login = login;
 		this.email = email;
@@ -81,6 +85,8 @@ public class User {
 		this.gender = gender;
 		this.dob = dob;
 		this.status = UserStatus.INVISIBLE;
+		this.amountOfFollowers = amountOfFollowers;
+		this.amountOfFollowee = amountOfFollowee;
 	}
 
 	public int getId() {
@@ -149,6 +155,22 @@ public class User {
 
 	public void setStatus(UserStatus status) {
 		this.status = status;
+	}
+
+	public int getAmountOfFollowers() {
+		return amountOfFollowers;
+	}
+
+	public void setAmountOfFollowers(int amountOfFollowers) {
+		this.amountOfFollowers = amountOfFollowers;
+	}
+
+	public int getAmountOfFollowee() {
+		return amountOfFollowee;
+	}
+
+	public void setAmountOfFallowee(int amountOfFollowee) {
+		this.amountOfFollowee = amountOfFollowee;
 	}
 
 }
