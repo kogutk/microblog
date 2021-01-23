@@ -1,4 +1,4 @@
-package pl.wwsis.MicroBlog.servicE;
+package pl.wwsis.MicroBlog.service;
 
 import pl.wwsis.MicroBlog.model.Post;
 import pl.wwsis.MicroBlog.model.User;
