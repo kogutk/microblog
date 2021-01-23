@@ -28,7 +28,7 @@ public class TestMicroblogServiceImpl {
 	@Test
 	public void TestShouldReturnAllPostsFromSpecificUser() {
 		//when
-		User testUser = microblogServiceImpl.registerUser("testowyLogin_1", "test1@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
+		User testUser = microblogServiceImpl.registerUser("testowyLogin_101", "test101@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		
 		microblogServiceImpl.createNewPost(testUser, "testowyPost1", true);
 		microblogServiceImpl.createNewPost(testUser, "testowyPost11", false);
@@ -42,8 +42,8 @@ public class TestMicroblogServiceImpl {
 	@Test
 	public void TestShouldGetAllPostsFromSpecificUserAndHisFollowers() {
 		//when
-		User testUser2 = microblogServiceImpl.registerUser("testowyLogin_2", "test2@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
-		User testUser3 = microblogServiceImpl.registerUser("testowyLogin_3", "test3@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
+		User testUser2 = microblogServiceImpl.registerUser("testowyLogin_202", "test202@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
+		User testUser3 = microblogServiceImpl.registerUser("testowyLogin_303", "test303@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		
 		microblogServiceImpl.createNewPost(testUser2, "testowyPost2", true);
 		microblogServiceImpl.createNewPost(testUser2, "testowyPost21", false);
@@ -77,7 +77,7 @@ public class TestMicroblogServiceImpl {
 	@Test
 	public void TestShouldCreateNewPost() {
 		//when
-		User testUser6 = microblogServiceImpl.registerUser("testowyLogin_6", "test6@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
+		User testUser6 = microblogServiceImpl.registerUser("testowyLogin_60", "test60@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		Integer userId = testUser6.getId();
 		
 		Post newPost = microblogServiceImpl.createNewPost(testUser6, "testowyPost6", true);
@@ -142,8 +142,8 @@ public class TestMicroblogServiceImpl {
 	@Test
 	public void TestShouldFindFolloweeOfUser() {
 		//when
-		User testUser11 = microblogServiceImpl.registerUser("testowyLogin_11", "test11@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
-		User testUser12 = microblogServiceImpl.registerUser("testowyLogin_12", "test12@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
+		User testUser11 = microblogServiceImpl.registerUser("testowyLogin_110", "test11@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
+		User testUser12 = microblogServiceImpl.registerUser("testowyLogin_120", "test12@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		
 		microblogServiceImpl.addFolloweeOfUser(testUser11, testUser12);
 		Follower findedFollower = microblogServiceImpl.findFolloweeOfUser(testUser11, testUser12);
@@ -155,8 +155,8 @@ public class TestMicroblogServiceImpl {
 	@Test
 	public void TestShouldDeleteFolloweeOfUser() {
 		//when
-		User testUser13 = microblogServiceImpl.registerUser("testowyLogin_13", "test13@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
-		User testUser14 = microblogServiceImpl.registerUser("testowyLogin_14", "test14@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
+		User testUser13 = microblogServiceImpl.registerUser("testowyLogin_130", "test130@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
+		User testUser14 = microblogServiceImpl.registerUser("testowyLogin_140", "test140@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		
 		Follower followee = microblogServiceImpl.addFolloweeOfUser(testUser13, testUser14);		
 		assertEquals(followee.getFollowsUserId(), testUser14.getId());
