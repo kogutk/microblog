@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import pl.wwsis.MicroBlog.dao.impl.FollowerDaoImpl;
 import pl.wwsis.MicroBlog.dao.impl.PostDaoImpl;
@@ -13,6 +14,7 @@ import pl.wwsis.MicroBlog.model.Post;
 import pl.wwsis.MicroBlog.model.User;
 import pl.wwsis.MicroBlog.service.MicroblogService;
 
+@Service
 public class MicroblogServiceImpl implements MicroblogService {
 
 	@Autowired

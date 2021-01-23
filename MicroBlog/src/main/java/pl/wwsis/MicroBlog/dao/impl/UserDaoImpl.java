@@ -38,7 +38,7 @@ public class UserDaoImpl implements UserDao {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		Date d = simpleDateFormat.parse(dob);
 
-		User user = new User(name, email, password, firstName, lastName, gender, d);
+		User user = new User(name, email, password, firstName, lastName, gender, d, 0, 0);
 		entityManager.persist(user);
 
 		return user;

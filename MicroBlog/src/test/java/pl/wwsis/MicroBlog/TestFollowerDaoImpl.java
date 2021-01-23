@@ -30,20 +30,11 @@ public class TestFollowerDaoImpl {
 	@Autowired
 	UserDaoImpl userDaoImpl;
 	
-//	@BeforeEach
-//	void setUp() throws Exception {
-//	}
-//
-//	@AfterEach
-//	void tearDown() throws Exception {
-//	}
-
 	@Test
 	public void TestAddFolloweeOfUser() {
 		try {
 			
 			User testUser_1 = userDaoImpl.registerUser("testowyLogin_11", "test_11@test.com", "123pasS456ss", "Jan", "Kowalski", 'F', "1990-01-01");
-			System.out.print("**** **** TEST");
 			User testUser_2 = userDaoImpl.registerUser("testowyLogin_12", "test_12@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
 			
 			Follower follower = followerDaoImpl.addFolloweeOfUser(testUser_1, testUser_2);
