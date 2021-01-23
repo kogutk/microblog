@@ -48,7 +48,8 @@ public class PostDaoImpl implements PostDao {
 	 * Method that downloads all my messages (published by me) and all messages of
 	 * other users that I follow (it is displaying user's Full Timeline)
 	 */
-	public List<Post> getFullTimelineOfUser(User user) {
+	
+       public List<Post> getFullTimelineOfUser(User user) {
 		int userId = user.getId();
 
 		
