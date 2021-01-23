@@ -35,7 +35,7 @@ class TestUserDaoImpl {
 	@Test
 	void TestRegisterUser() {
 		try {
-			User testuser = userDaoImpl.registerUser("testowyLogin_1", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testuser = userDaoImpl.registerUser("testowyLogin_1", "test1@test.com", "passssswS9", "Jan", "Kowalski", 'M', "1990-01-01");
 			assertEquals(testuser.getLogin(), "testowyLogin_1");
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -46,8 +46,8 @@ class TestUserDaoImpl {
 	@Test
 	void TestGetUserByLogin() {
 		try {
-		User testUser = userDaoImpl.registerUser("testowyLogin", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
-		assertEquals(testUser, userDaoImpl.getUserByLogin(testUser.getLogin()));
+		User testUser = userDaoImpl.registerUser("testowyLogin_2", "test@test.com", "passssssS9sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+		assertEquals(testUser.getLogin(), userDaoImpl.getUserByLogin(testUser.getLogin()).getLogin());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

@@ -41,8 +41,10 @@ class TestFollowerDaoImpl {
 	@Test
 	void TestAddFolloweeOfUser() {
 		try {
-			User testUser_1 = userDaoImpl.registerUser("testowyLogin_1", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
-			User testUser_2 = userDaoImpl.registerUser("testowyLogin_2", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
+			
+			User testUser_1 = userDaoImpl.registerUser("testowyLogin_11", "test_11@test.com", "123pasS456ss", "Jan", "Kowalski", 'F', "1990-01-01");
+			System.out.print("**** **** TEST");
+			User testUser_2 = userDaoImpl.registerUser("testowyLogin_12", "test_12@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
 			
 			Follower follower = followerDaoImpl.addFolloweeOfUser(testUser_1, testUser_2);
 			assertEquals(follower.getFollowsUserId(), testUser_2.getId());
@@ -55,8 +57,8 @@ class TestFollowerDaoImpl {
 	@Test
 	void TestFindFolloweeOfUser() {
 		try {
-		User testUser_1 = userDaoImpl.registerUser("testowyLogin_1", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
-		User testUser_2 = userDaoImpl.registerUser("testowyLogin_2", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
+		User testUser_1 = userDaoImpl.registerUser("testowyLogin_13", "test13@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+		User testUser_2 = userDaoImpl.registerUser("testowyLogin_14", "test14@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
 		
 		Follower follower = followerDaoImpl.addFolloweeOfUser(testUser_1, testUser_2);
 		assertEquals(follower.getFollowsUserId(), testUser_2.getId());
@@ -69,13 +71,14 @@ class TestFollowerDaoImpl {
 	@Test
 	void TestDeleteFolloweeOfUser() {
 		try {
-			User testUser_1 = userDaoImpl.registerUser("testowyLogin_1", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
-			User testUser_2 = userDaoImpl.registerUser("testowyLogin_2", "test@test.com", "pass", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser_1 = userDaoImpl.registerUser("testowyLogin_15", "test15@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser_2 = userDaoImpl.registerUser("testowyLogin_16", "test16@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
 			
 			Follower follower = followerDaoImpl.addFolloweeOfUser(testUser_1, testUser_2);
 			assertEquals(follower.getFollowsUserId(), testUser_2.getId());
 			Follower removedFollower = followerDaoImpl.deleteFolloweeOfUser(testUser_1, testUser_2);
-			assertEquals(removedFollower.getFollowsUserId(), testUser_1.getId());
+			assertEquals(removedFollower.getFollowsUserId(), testUser_2.getId());
+			assertNotEquals(removedFollower.getFollowsUserId(), testUser_1.getId());
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
