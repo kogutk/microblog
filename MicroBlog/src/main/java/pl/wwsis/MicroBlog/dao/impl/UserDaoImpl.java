@@ -64,7 +64,9 @@ public class UserDaoImpl implements UserDao {
 		User user = this.getUserByLogin(login);
 		
 		ArrayList<String> arr = user.getLikedPosts();
+		System.out.println("$$$" + arr);
 		arr.remove(postId.toString());
+		System.out.println("$$$ after remove" + arr);
 		user.setLikedPosts(arr);
 		
 		entityManager.merge(user);

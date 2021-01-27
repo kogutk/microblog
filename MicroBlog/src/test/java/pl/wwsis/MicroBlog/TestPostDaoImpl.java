@@ -1,14 +1,11 @@
 package pl.wwsis.MicroBlog;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +20,6 @@ import pl.wwsis.MicroBlog.model.User;
 @RunWith(SpringRunner.class)
 
 @SpringBootTest(classes = pl.wwsis.MicroBlog.App.class)
-
 public class TestPostDaoImpl {
 	
 	@Autowired
@@ -136,18 +132,4 @@ public class TestPostDaoImpl {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

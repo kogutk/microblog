@@ -3,8 +3,12 @@ package pl.wwsis.MicroBlog;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +25,20 @@ public class TestUserDaoImpl {
 	
 	@Autowired
 	UserDaoImpl userDaoImpl;
+	
+	private ArrayList<String> arrayWithPostId;
+	
+	@Before
+	public void setUp() {
+		arrayWithPostId = new ArrayList<String>();
+	}
+	
+	@AfterEach
+	public void tearDown() {
+		arrayWithPostId = null;
+	}
+	
+	
 	
 	@Test
 	public void TestRegisterUser() {
@@ -53,9 +71,31 @@ public class TestUserDaoImpl {
 			userDaoImpl.giveLike(testUser.getLogin(), postId);
 			User testUserWithLikedPost = userDaoImpl.giveLike(testUser.getLogin(), postId2);
 			
-			System.out.print("%%%%%%%%%%%%%" + testUserWithLikedPost.getLikedPosts());
+			arrayWithPostId.add("192");
+			arrayWithPostId.add("62");
 			
-			assertEquals(testUser.getLogin(), userDaoImpl.getUserByLogin(testUser.getLogin()).getLogin());
+			assertEquals(arrayWithPostId, testUserWithLikedPost.getLikedPosts());
+			assertEquals(2, testUserWithLikedPost.getLikedPosts().size());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void TestGiveUnLike() {
+		try {
+			User testUser = userDaoImpl.registerUser("testowyLogin_455", "test455@test.com", "passssssS9sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+			Integer postId = 242;
+			Integer postId2 = 51;
+			
+			userDaoImpl.giveLike(testUser.getLogin(), postId);
+			userDaoImpl.giveLike(testUser.getLogin(), postId2);
+			User testUserWithLikedPost2 = userDaoImpl.giveUnLike(testUser.getLogin(), postId);
+
+			arrayWithPostId.add("51");
+
+			assertEquals(arrayWithPostId, testUserWithLikedPost2.getLikedPosts());
+			assertEquals(1, testUserWithLikedPost2.getLikedPosts().size());		
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
