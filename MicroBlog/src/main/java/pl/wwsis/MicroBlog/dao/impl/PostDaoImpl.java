@@ -22,9 +22,17 @@ public class PostDaoImpl implements PostDao {
 	@PersistenceContext
 	EntityManager entityManager;
 
+
+	public Post getPostById(Integer postId) {
+		String queryString = "SELECT p FROM Post p WHERE p.id=:postId";
+		Query query = entityManager.createQuery(queryString);
+		query.setParameter("postId", postId);
+		Post post = (Post) query.getSingleResult(); 
+		return post;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
-
 	/** Method that retrieves all messages for a selected user (user's Timeline) */
 	public List<Post> getTimelineOfUser(User user) {
 		int userId = user.getId();
@@ -34,7 +42,6 @@ public class PostDaoImpl implements PostDao {
 		
 		List<Post> postList = null;
 		try {
-		
 		postList = (List<Post>) query.getResultList();
 		}
 		catch (Exception e) {e.printStackTrace();}
@@ -112,5 +119,23 @@ public class PostDaoImpl implements PostDao {
 		//entityManager.getTransaction().commit();
 		return post;
 
+	}
+
+	@Override
+	public Post getLikedByUser(Integer postId) {
+		Post post = this.getPostById(postId);
+
+		post.setAmountOfLike(post.getAmountOfLike() + 1);
+		entityManager.merge(post);
+		return post;
+	}
+
+	@Override
+	public Post getUnLikedByUser(Integer postId) {
+		Post post = this.getPostById(postId);
+
+		post.setAmountOfLike(post.getAmountOfLike() - 1);
+		entityManager.merge(post);
+		return post;
 	}
 }
