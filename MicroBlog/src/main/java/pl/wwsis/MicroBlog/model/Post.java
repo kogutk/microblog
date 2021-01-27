@@ -33,6 +33,9 @@ public class Post {
 
 	@Column(name = "isPublic")
 	private Boolean isPublic;
+	
+	@Column(name = "amountOfLike")
+	private Integer amountOfLike;
 
 	public String getContent() {
 		return content;
@@ -46,6 +49,10 @@ public class Post {
 		return authorId;
 	}
 	
+	public Integer amountOfLike() {
+		return amountOfLike;
+	}
+	
 	public Post() {
 	}
 
@@ -53,7 +60,20 @@ public class Post {
 		super();
 		this.authorId = authorId;
 		this.content = content;
+		this.amountOfLike = 0;
 		this.isPublic = isPublic;
+	}
+	
+	public int getAmountOfLike() {
+		return amountOfLike;
+	}
+	
+	public void setAmountOfLike(int amountOfLike) {
+		this.amountOfLike = amountOfLike;
+	}
+	
+	public int getPostId() {
+		return id;
 	}
 
 }

@@ -38,6 +38,7 @@ public class FollowerDaoImpl implements FollowerDao {
 		user.setAmountOfFallowee(user.getAmountOfFollowee() + 1);
 		//entityManager.getTransaction().begin();
 		Follower follower = new Follower(userId, followeeId);
+		entityManager.merge(user);
 		entityManager.persist(follower);
 		//entityManager.getTransaction().commit();
 		return follower;
@@ -72,7 +73,7 @@ public class FollowerDaoImpl implements FollowerDao {
 		Follower follower = entityManager.find(Follower.class, followerId);
 
 		//entityManager.getTransaction().begin();
-
+		entityManager.merge(user);
 		entityManager.remove(follower);
 
 		//entityManager.getTransaction().commit();
