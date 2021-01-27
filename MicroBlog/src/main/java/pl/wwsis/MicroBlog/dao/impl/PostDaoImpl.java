@@ -24,13 +24,12 @@ public class PostDaoImpl implements PostDao {
 
 
 	public Post getPostById(Integer postId) {
-		String queryString = "SELECT p FROM Post p WHERE p.id=:postId";
+		String queryString = "SELECT p FROM Post p WHERE p.postId = :postId";
 		Query query = entityManager.createQuery(queryString);
-		query.setParameter("postId", postId);
-		Post post = (Post) query.getSingleResult(); 
+		Post post = (Post) query.getSingleResult();
 		return post;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	/** Method that retrieves all messages for a selected user (user's Timeline) */
@@ -39,7 +38,7 @@ public class PostDaoImpl implements PostDao {
 		String queryString = "SELECT p FROM Post p WHERE p.authorId=:id";
 		Query query = entityManager.createQuery(queryString);
 		query.setParameter("id", userId);
-		
+
 		List<Post> postList = null;
 		try {
 		postList = (List<Post>) query.getResultList();
@@ -55,21 +54,21 @@ public class PostDaoImpl implements PostDao {
 	 * Method that downloads all my messages (published by me) and all messages of
 	 * other users that I follow (it is displaying user's Full Timeline)
 	 */
-	
+
        public List<Post> getFullTimelineOfUser(User user) {
 		int userId = user.getId();
 
-		
+
 		String queryString = "SELECT p FROM Post p WHERE p.authorId=:id OR p.authorId IN (SELECT followsUserId FROM Follower f WHERE f.id=:id)";
 		Query query = entityManager.createQuery(queryString);
 		query.setParameter("id", userId);
 
-		
+
 		List<Post> postList =null;
 		try {
 		postList = (List<Post>) query.getResultList();
 
-		
+
 		}
 		catch (Exception e) {e.printStackTrace();}
 		return postList;
@@ -89,20 +88,20 @@ public class PostDaoImpl implements PostDao {
 		return postList;
 
 	}
-	
-	
+
+
 	/**
 	 * Method that retrieves all messages from all users (it is displaying user's
 	 * Full Public Timeline)
 	 */
 	public void deleteAllPosts() {
-		
+
 		String queryString = "DELETE FROM Post";
 
 		Query query = entityManager.createQuery(queryString);
-		
+
 		query.executeUpdate();
-		
+
 
 	}
 
@@ -135,6 +134,18 @@ public class PostDaoImpl implements PostDao {
 		Post post = this.getPostById(postId);
 
 		post.setAmountOfLike(post.getAmountOfLike() - 1);
+		entityManager.merge(post);
+		return post;
+	}
+
+
+	@Override
+	public Post addCommentToPost(int postId, String comment) {
+		String queryString = "SELECT p FROM Post p WHERE p.id=:postId";
+		Query query = entityManager.createQuery(queryString);
+		query.setParameter("postId", postId);
+		Post post = (Post) query.getSingleResult();
+		post.setComments(comment);
 		entityManager.merge(post);
 		return post;
 	}

@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.Column;
+import java.util.ArrayList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -33,26 +34,32 @@ public class Post {
 
 	@Column(name = "isPublic")
 	private Boolean isPublic;
-	
+
 	@Column(name = "amountOfLike")
 	private Integer amountOfLike;
 
 	public String getContent() {
 		return content;
 	}
-		
+
 	public Boolean isPublic() {
 		return isPublic;
 	}
-	
+
 	public Integer authorId() {
 		return authorId;
 	}
-	
+
 	public Integer amountOfLike() {
 		return amountOfLike;
 	}
-	
+
+	@Column(name = "comments")
+	public ArrayList<String> comments;
+
+	@Column(name = "tags")
+	public ArrayList<String> tags;
+
 	public Post() {
 	}
 
@@ -63,17 +70,24 @@ public class Post {
 		this.amountOfLike = 0;
 		this.isPublic = isPublic;
 	}
-	
+
 	public int getAmountOfLike() {
 		return amountOfLike;
 	}
-	
+
 	public void setAmountOfLike(int amountOfLike) {
 		this.amountOfLike = amountOfLike;
 	}
-	
+
 	public int getPostId() {
 		return id;
+
+	public ArrayList<String> getComments() {
+		return comments;
+	}
+
+	public void setComments(String comment) {
+		this.comments.add(comment);
 	}
 
 }
