@@ -5,7 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import javax.validation.constraints.NotBlank;
@@ -67,26 +72,34 @@ public class User {
 	@Column(name = "statusId")
 	private UserStatus status;
 
+	@Column(name = "amountOfFollowers")
 	private int amountOfFollowers;
 
+	@Column(name = "amountOfFollowee")
 	private int amountOfFollowee;
 
+	@Column(name = "likedPosts")
+	private ArrayList<String> likedPosts;
+	
 	public User() {
 	}
 
-	public User(String login, String email, String password, String firstName, String lastName, Character gender,
-			Date dob, Integer amountOfFollowers, Integer amountOfFollowee) {
-
-		this.login = login;
-		this.email = email;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.gender = gender;
-		this.dob = dob;
-		this.status = UserStatus.INVISIBLE;
-		this.amountOfFollowers = amountOfFollowers;
-		this.amountOfFollowee = amountOfFollowee;
+	public User(
+			String login, String email, String password,
+			String firstName, String lastName, Character gender,
+			Date dob
+		) {
+			this.login = login;
+			this.email = email;
+			this.password = password;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.gender = gender;
+			this.dob = dob;
+			this.status = UserStatus.INVISIBLE;
+			this.amountOfFollowers = 0;
+			this.amountOfFollowee = 0;
+			this.likedPosts = new ArrayList<String>();
 	}
 
 	public int getId() {
@@ -172,5 +185,12 @@ public class User {
 	public void setAmountOfFallowee(int amountOfFollowee) {
 		this.amountOfFollowee = amountOfFollowee;
 	}
+	
+	public ArrayList<String> getLikedPosts() {
+		return likedPosts;
+	}
 
+	public void setLikedPosts(ArrayList<String> likedPosts) {
+		this.likedPosts = likedPosts;
+	}
 }

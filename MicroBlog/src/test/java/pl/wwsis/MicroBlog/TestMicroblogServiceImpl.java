@@ -167,7 +167,8 @@ public class TestMicroblogServiceImpl {
 		
 		microblogServiceImpl.addFolloweeOfUser(testUser11, testUser12);
 		Follower findedFollower = microblogServiceImpl.findFolloweeOfUser(testUser11, testUser12);
-		
+		System.out.print("%%%%%%%%%%%%%%" + findedFollower);
+		System.out.print("^^^^%$%%%%" + testUser12.getId());
 		//then
 		assertEquals(findedFollower.getFollowsUserId(), testUser12.getId());
 	}
