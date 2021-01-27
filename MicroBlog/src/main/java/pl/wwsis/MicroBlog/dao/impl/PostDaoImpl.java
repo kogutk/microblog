@@ -24,8 +24,9 @@ public class PostDaoImpl implements PostDao {
 
 
 	public Post getPostById(Integer postId) {
-		String queryString = "SELECT p FROM Post p WHERE p.postId = :postId";
+		String queryString = "SELECT p FROM Post p WHERE p.id = :postId";
 		Query query = entityManager.createQuery(queryString);
+		query.setParameter("postId", postId);
 		Post post = (Post) query.getSingleResult();
 		return post;
 	}
@@ -140,12 +141,17 @@ public class PostDaoImpl implements PostDao {
 
 
 	@Override
-	public Post addCommentToPost(int postId, String comment) {
-		String queryString = "SELECT p FROM Post p WHERE p.id=:postId";
-		Query query = entityManager.createQuery(queryString);
-		query.setParameter("postId", postId);
-		Post post = (Post) query.getSingleResult();
-		post.setComments(comment);
+	public Post addCommentToPost(int postId, ArrayList<String> comments) {
+		Post post = this.getPostById(postId);
+		post.setComments(comments);
+		entityManager.merge(post);
+		return post;
+	}
+
+	@Override
+	public Post addTagToPost(int postId, ArrayList<String> tags) {
+		Post post = this.getPostById(postId);
+		post.setTags(tags);
 		entityManager.merge(post);
 		return post;
 	}

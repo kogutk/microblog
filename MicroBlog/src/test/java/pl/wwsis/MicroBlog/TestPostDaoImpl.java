@@ -137,17 +137,38 @@ public class TestPostDaoImpl {
 		}
 	}
 	
+	@Test
+	public void TestAddCommentToPost() {
+		try {
+			User testUser = userDaoImpl.registerUser("testowyLogin_28", "test28@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");		
+			Post testPost = postDaoImpl.addPostOfUser(testUser, "testowyPost123", true);
+			
+			assertEquals(1, postDaoImpl.getTimelineOfUser(testUser).size());
+			String commentTextTest = "Test comment for Post";
+			ArrayList<String> testPostComments = testPost.getComments();
+			testPostComments.add(commentTextTest);
+			postDaoImpl.addCommentToPost(testPost.getPostId(), testPostComments);
+			assertTrue(testPost.getComments().contains(commentTextTest));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Test
+	public void TestAddTagToPost() {
+		try {
+			User testUser = userDaoImpl.registerUser("testowyLogin_29", "test29@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");		
+			Post testPost = postDaoImpl.addPostOfUser(testUser, "testowyPost123", true);
+			
+			assertEquals(1, postDaoImpl.getTimelineOfUser(testUser).size());
+			String commentTagTest = "#tag1";
+			ArrayList<String> testPostTags = testPost.getTags();
+			testPostTags.add(commentTagTest);
+			postDaoImpl.addTagToPost(testPost.getPostId(), testPostTags);
+			assertTrue(testPost.getTags().contains(commentTagTest));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

@@ -2,9 +2,11 @@
 package pl.wwsis.MicroBlog.dao;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import pl.wwsis.MicroBlog.model.Post;
 import pl.wwsis.MicroBlog.model.User;
+
 
 public interface PostDao {
 	
@@ -29,5 +31,8 @@ public interface PostDao {
 	/** Method that adds a message to the user */
 	Post addPostOfUser(User user, String contentOfThePost , Boolean isPublic);
 	
-	Post addCommentToPost(int postId, String comment);
+	Post addCommentToPost(int postId, ArrayList<String> comments);
+	
+	Post addTagToPost(int postId, ArrayList<String> tags);
+	
 }

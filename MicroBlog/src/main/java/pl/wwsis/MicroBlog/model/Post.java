@@ -69,6 +69,8 @@ public class Post {
 		this.content = content;
 		this.amountOfLike = 0;
 		this.isPublic = isPublic;
+		this.comments = new ArrayList<String>();
+		this.tags = new ArrayList<String>();
 	}
 
 	public int getAmountOfLike() {
@@ -81,13 +83,21 @@ public class Post {
 
 	public int getPostId() {
 		return id;
+	}
 
 	public ArrayList<String> getComments() {
 		return comments;
 	}
 
-	public void setComments(String comment) {
-		this.comments.add(comment);
+	public void setComments(ArrayList<String> comments) {
+		this.comments = comments;
 	}
-
+	
+	public ArrayList<String> getTags() {
+		return tags;
+	}
+	
+	public void setTags(ArrayList<String> tags) {
+		this.tags = tags;
+	}
 }
