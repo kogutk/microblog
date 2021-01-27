@@ -45,7 +45,7 @@ public class AppTest {
 		User u = null;
 
 		try {
-			u = userDaoImpl.registerUser("testowyLogin", "test@test.com", "passssswS9", "Jan", "Kowalski", 'M', "1990-01-01");
+			u = userDaoImpl.registerUser("testowyLogin", "test@test.com", "passsssw%S9", "Jan", "Kowalski", 'M', "1990-01-01");
 		} catch (ParseException e) {
 
 			e.printStackTrace();
@@ -60,7 +60,7 @@ public class AppTest {
 		User u = null;
 
 		try {
-			u = userDaoImpl.registerUser("testowyLogin2", "test2@test2.com", "passssssS9sssssss", "Jan", "Kowalski", 'M',
+			u = userDaoImpl.registerUser("testowyLogin2", "test2@test2.com", "passssssS9ssss%sss", "Jan", "Kowalski", 'M',
 					"1990-01-01");
 
 		} catch (ParseException e) {
@@ -79,7 +79,7 @@ public class AppTest {
 		Post p = null;
 
 		try {
-			u = userDaoImpl.registerUser("testowyLogin3", "test3@test3.com", "passssssS9sssssss", "Jan", "Kowalski", 'M',
+			u = userDaoImpl.registerUser("testowyLogin3", "test3@test3.com", "passssssS9sss%ssss", "Jan", "Kowalski", 'M',
 					"1990-01-01");
 			p = postDaoImpl.addPostOfUser(u, "testowyPost", true);
 
@@ -100,9 +100,9 @@ public class AppTest {
 		List<Post> postListTest = new ArrayList<>();
 
 		try {
-			u1 = userDaoImpl.registerUser("testowyUser23", "test4@test4.com", "passssssS9sssssss", "Jan", "Kowalski", 'M',
+			u1 = userDaoImpl.registerUser("testowyUser23", "test4@test4.com", "passssssS9sss%ssss", "Jan", "Kowalski", 'M',
 					"1990-01-01");
-			u2 = userDaoImpl.registerUser("testowyFollowee23", "test5@test5.com", "passssssS9sssssss", "Jan", "Kowalski", 'M',
+			u2 = userDaoImpl.registerUser("testowyFollowee23", "test5@test5.com", "passssssS9s%ssssss", "Jan", "Kowalski", 'M',
 					"1990-01-01");
 			followerDaoImpl.addFolloweeOfUser(u1, u2);
 
@@ -134,9 +134,9 @@ public class AppTest {
 		List<Post> postListTest = new ArrayList<>();
 
 		try {
-			u1 = userDaoImpl.registerUser("testowyUser6", "test6@test6.com", "passssssS9sssssss", "Jan", "Kowalski", 'M',
+			u1 = userDaoImpl.registerUser("testowyUser6", "test6@test6.com", "passssssS9s%ssssss", "Jan", "Kowalski", 'M',
 					"1990-01-01");
-			u2 = userDaoImpl.registerUser("testowyUser7", "test7@test7.com", "passssssS9sssssss", "Jan", "Kowalski", 'M',
+			u2 = userDaoImpl.registerUser("testowyUser7", "test7@test7.com", "passssssS9ss%sssss", "Jan", "Kowalski", 'M',
 					"1990-01-01");
 			followerDaoImpl.addFolloweeOfUser(u1, u2);
 
@@ -163,9 +163,9 @@ public class AppTest {
 		Follower f = null;
 
 		try {
-			u1 = userDaoImpl.registerUser("testowyUser8", "test8@test8.com", "passssssS9sssssss", "Jan", "Kowalski", 'M',
+			u1 = userDaoImpl.registerUser("testowyUser8", "test8@test8.com", "passssssS9ssss%sss", "Jan", "Kowalski", 'M',
 					"1990-01-01");
-			u2 = userDaoImpl.registerUser("testowyFollowee9", "test9@test9.com", "passssssS9sssssss", "Jan", "Kowalski", 'M',
+			u2 = userDaoImpl.registerUser("testowyFollowee9", "test9@test9.com", "passssssS9ss%sssss", "Jan", "Kowalski", 'M',
 					"1990-01-01");
 			f = followerDaoImpl.addFolloweeOfUser(u1, u2);
 
@@ -187,9 +187,9 @@ public class AppTest {
 		Follower f = null;
 
 		try {
-			u1 = userDaoImpl.registerUser("testowyUser10", "test10@test10.com", "passssssS9sssssss", "Jan", "Kowalski", 'M',
+			u1 = userDaoImpl.registerUser("testowyUser10", "test10@test10.com", "passssssS9ssss%sss", "Jan", "Kowalski", 'M',
 					"1990-01-01");
-			u2 = userDaoImpl.registerUser("testowyFollowee11", "test11@test11.com", "passssssS9sssssss", "Jan", "Kowalski", 'M',
+			u2 = userDaoImpl.registerUser("testowyFollowee11", "test11@test11.com", "passssssS9s%ssssss", "Jan", "Kowalski", 'M',
 					"1990-01-01");
 			f = followerDaoImpl.addFolloweeOfUser(u1, u2);
 

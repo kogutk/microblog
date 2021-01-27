@@ -39,14 +39,13 @@ public class User {
 
 	@Column(name = "password", length = 100)
 	@NotNull(message = "Password cannot be null")
-	@NotBlank(message = "Login cannot be blank")
+	@NotBlank(message = "Password cannot be blank")
 	@Size(min = 10, max = 100, message = "Password must be between 10 and 200 characters")
+	@Pattern(regexp = "(?=.*[`~!@#$%^&*()\\-_=+\\\\|\\[{\\]};:'\",<.>/?]).+", message = "Password must contain one special character.")
 	@Pattern(regexp = "(?=.*[0-9]).+", message = "Password must contain one digit.")
 	@Pattern(regexp = "(?=.*[a-z]).+", message = "Password must contain one lowercase letter.")
 	@Pattern(regexp = "(?=.*[A-Z]).+", message = "Password must contain one upper letter.")
-	@Pattern(regexp = "(?=.*[!@#$%^&*+=?-_()/\"\\.,<>~`;:]).+", message = "Password must contain one special character.")
 	@Pattern(regexp = "(?=\\S+$).+", message = "Password must contain no whitespace.")
-
 	private String password;
 
 	@Column(name = "firstName", length = 200)
@@ -70,6 +69,8 @@ public class User {
 	private int amountOfFollowers;
 
 	private int amountOfFollowee;
+	
+	private boolean isLogged;
 
 	public User() {
 	}
@@ -87,6 +88,8 @@ public class User {
 		this.status = UserStatus.INVISIBLE;
 		this.amountOfFollowers = amountOfFollowers;
 		this.amountOfFollowee = amountOfFollowee;
+		//this.isLogged=false;
+		
 	}
 
 	public int getId() {
@@ -171,6 +174,14 @@ public class User {
 
 	public void setAmountOfFallowee(int amountOfFollowee) {
 		this.amountOfFollowee = amountOfFollowee;
+	}
+
+	public boolean isLogged() {
+		return isLogged;
+	}
+
+	public void setLogged(boolean isLogged) {
+		this.isLogged = isLogged;
 	}
 
 }
