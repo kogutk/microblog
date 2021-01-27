@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +33,7 @@ public class TestFollowerDaoImpl {
 	UserDaoImpl userDaoImpl;
 	
 	@Test
-	public void TestAddFolloweeOfUser() {
+	public void TestShouldAddFolloweeOfUser() {
 		try {
 			
 			User testUser_1 = userDaoImpl.registerUser("testowyLogin_11", "test_11@test.com", "123pasS456ss", "Jan", "Kowalski", 'F', "1990-01-01");
@@ -46,7 +48,7 @@ public class TestFollowerDaoImpl {
 	}
 	
 	@Test
-	public void TestFindFolloweeOfUser() {
+	public void TestShouldFindFolloweeOfUser() {
 		try {
 		User testUser_1 = userDaoImpl.registerUser("testowyLogin_13", "test13@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
 		User testUser_2 = userDaoImpl.registerUser("testowyLogin_14", "test14@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
@@ -60,7 +62,7 @@ public class TestFollowerDaoImpl {
 	}
 	
 	@Test
-	public void TestDeleteFolloweeOfUser() {
+	public void TestShouldDeleteFolloweeOfUser() {
 		try {
 			User testUser_1 = userDaoImpl.registerUser("testowyLogin_15", "test15@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
 			User testUser_2 = userDaoImpl.registerUser("testowyLogin_16", "test16@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
@@ -71,6 +73,31 @@ public class TestFollowerDaoImpl {
 			assertEquals(removedFollower.getFollowsUserId(), testUser_2.getId());
 			assertNotEquals(removedFollower.getFollowsUserId(), testUser_1.getId());
 			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void TestShouldGetListOfUsersFollowers(){
+		List<Follower> followers = new ArrayList<>();
+		try {
+
+			User testUser_1 = userDaoImpl.registerUser("testowyLogin_211", "test_211@test.com", "123pasS456ss", "Jane", "Kowalski", 'F', "1990-01-01");
+			User testUser_2 = userDaoImpl.registerUser("testowyLogin_221", "test_221@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser_3 = userDaoImpl.registerUser("testowyLogin_231", "test_231@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser_4 = userDaoImpl.registerUser("testowyLogin_241", "test_241@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+
+
+			followers.add(followerDaoImpl.addFolloweeOfUser(testUser_2, testUser_1));
+			followers.add(followerDaoImpl.addFolloweeOfUser(testUser_3, testUser_1));
+			followers.add(followerDaoImpl.addFolloweeOfUser(testUser_4, testUser_1));
+
+			List<Follower> followers1 = followerDaoImpl.getListOfFollowers(testUser_1);
+
+			for (int i = 0;i<followers.size();i++) {
+				assertEquals(followers.get(i).getId(), followers1.get(i).getId());
+				assertEquals(followers.get(i).getFollowsUserId(), followers1.get(i).getFollowsUserId());
+			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

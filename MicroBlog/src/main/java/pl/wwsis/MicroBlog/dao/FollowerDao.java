@@ -3,6 +3,8 @@ package pl.wwsis.MicroBlog.dao;
 import pl.wwsis.MicroBlog.model.Follower;
 import pl.wwsis.MicroBlog.model.User;
 
+import java.util.List;
+
 
 public interface FollowerDao {
 	
@@ -13,9 +15,11 @@ public interface FollowerDao {
 	
 	/** Checking if another user is on my tracked list (Reading the "follower" and "followee" pairs) */
 	Follower findFolloweeOfUser(User user, User followee);
-	
+
 	/** Removing another user from those currently logged in by the user (Removing the "follower" and "followee" pairs) */
 	Follower deleteFolloweeOfUser(User user, User followee); //alt as parameter Follower
-	
+
+	/** Providing list of user's followers */
+	List<Follower> getListOfFollowers (User user);
 
 }

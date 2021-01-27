@@ -96,6 +96,12 @@ public interface MicroblogService {
 	 */
 	Follower deleteFolloweeOfUser(User user, User followee);
 
+	/**
+	 * Retrive list of user's followers (users who follows loged in user).
+	 * @param user
+	 * @return List<follower>
+	 */
+	List<Follower> getListOfUsersFollowers (User user);
 
 
 

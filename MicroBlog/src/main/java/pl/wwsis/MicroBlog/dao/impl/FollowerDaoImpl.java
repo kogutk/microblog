@@ -6,10 +6,15 @@ import javax.persistence.PersistenceContext;
 import pl.wwsis.MicroBlog.dao.FollowerDao;
 import pl.wwsis.MicroBlog.model.Follower;
 import pl.wwsis.MicroBlog.model.FollowerId;
+import pl.wwsis.MicroBlog.model.Post;
 import pl.wwsis.MicroBlog.model.User;
+
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Transactional
 @Component
@@ -74,4 +79,20 @@ public class FollowerDaoImpl implements FollowerDao {
 		return follower;
 
 	} // alt as parameter Follower
+
+	@Override
+	public List<Follower> getListOfFollowers(User user) {
+		int userId = user.getId();
+
+		String queryString = "SELECT f FROM Follower f WHERE f.followsUserId=:id";
+		Query query = entityManager.createQuery(queryString);
+		query.setParameter("id", userId);
+
+		List<Follower> followersList =null;
+		try {
+			followersList = (List<Follower>) query.getResultList();
+		}
+		catch (Exception e) {e.printStackTrace();}
+		return followersList;
+	}
 }

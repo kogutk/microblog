@@ -2,7 +2,10 @@ package pl.wwsis.MicroBlog;
 
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -187,8 +190,28 @@ public class TestMicroblogServiceImpl {
 		assertEquals(0, testUser14.getAmountOfFollowee());
 		
 	}
-	
-	
+
+	@Test
+	public void TestShouldGetListOfUsersFollowers(){
+		List<Follower> followers = new ArrayList<>();
+
+		User testUser_1 = microblogServiceImpl.registerUser("testowyLogin_251", "test_251@test.com", "123pasS456ss", "Jane", "Kowalski", 'F', "1990-01-01");
+		User testUser_2 = microblogServiceImpl.registerUser("testowyLogin_261", "test_261@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+		User testUser_3 = microblogServiceImpl.registerUser("testowyLogin_271", "test_271@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+		User testUser_4 = microblogServiceImpl.registerUser("testowyLogin_281", "test_281@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+
+
+		followers.add(microblogServiceImpl.addFolloweeOfUser(testUser_2, testUser_1));
+		followers.add(microblogServiceImpl.addFolloweeOfUser(testUser_3, testUser_1));
+		followers.add(microblogServiceImpl.addFolloweeOfUser(testUser_4, testUser_1));
+
+		List<Follower> followers1 = microblogServiceImpl.getListOfUsersFollowers(testUser_1);
+
+		for (int i = 0;i<followers.size();i++) {
+			assertEquals(followers.get(i).getId(), followers1.get(i).getId());
+			assertEquals(followers.get(i).getFollowsUserId(), followers1.get(i).getFollowsUserId());
+		}
+	}
 	
 	
 
