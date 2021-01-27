@@ -71,5 +71,9 @@ public class Post {
 	public void setAmountOfLike(int amountOfLike) {
 		this.amountOfLike = amountOfLike;
 	}
+	
+	public int getPostId() {
+		return id;
+	}
 
 }

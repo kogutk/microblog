@@ -24,8 +24,9 @@ public class PostDaoImpl implements PostDao {
 
 
 	public Post getPostById(Integer postId) {
-		String queryString = "SELECT p FROM Post p WHERE p.postId = :postId";
+		String queryString = "SELECT p FROM Post p WHERE p.id=:postId";
 		Query query = entityManager.createQuery(queryString);
+		query.setParameter("postId", postId);
 		Post post = (Post) query.getSingleResult(); 
 		return post;
 	}
@@ -125,7 +126,7 @@ public class PostDaoImpl implements PostDao {
 		Post post = this.getPostById(postId);
 
 		post.setAmountOfLike(post.getAmountOfLike() + 1);
-		entityManager.persist(post);
+		entityManager.merge(post);
 		return post;
 	}
 
@@ -134,7 +135,7 @@ public class PostDaoImpl implements PostDao {
 		Post post = this.getPostById(postId);
 
 		post.setAmountOfLike(post.getAmountOfLike() - 1);
-		entityManager.persist(post);
+		entityManager.merge(post);
 		return post;
 	}
 }
