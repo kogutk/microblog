@@ -171,20 +171,30 @@ public class TestUserDaoImpl {
 			e.printStackTrace();
 		}
 	}
-	
-	
+		
 	@Test
-	public void changeUserEmail() {
+	public void TestChangeUserEmail() {
 		try {
 			User testUser = userDaoImpl.registerUser("testowyLogin_99", "test99@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
 			userDaoImpl.changeUserEmail(testUser, "newtest99@test.com");
-			
 			assertEquals(testUser.getEmail(), "newtest99@test.com");	
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
 
+	@Test
+	public void  TestChangeUserPassword () {
+		try {
+			User testUser = userDaoImpl.registerUser("testowyLogin_909", "test909@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+			userDaoImpl.changeUserPassword(testUser, testUser.getPassword(),"9NEWPa$$Word55","9NEWPa$$Word55");
+			
+			assertEquals(testUser.getPassword(), "9NEWPa$$Word55");	
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Test
 	public void TestGiveLike() {
 		try {

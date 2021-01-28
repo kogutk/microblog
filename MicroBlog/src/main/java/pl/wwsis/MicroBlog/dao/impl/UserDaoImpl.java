@@ -13,7 +13,6 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
-
 @Transactional
 @Component
 public class UserDaoImpl implements UserDao {
@@ -75,7 +74,6 @@ public class UserDaoImpl implements UserDao {
 		user.setStatus(UserStatus.ACTIVE);
 
 		return user;
-
 	}
 
 	@Override
@@ -86,8 +84,18 @@ public class UserDaoImpl implements UserDao {
 		String logoutStatement = "You've been successfully logged out";
 
 		return logoutStatement;
-
 	}
+	
+//	@Override
+//	public boolean resetForgottenPassword(String email) {
+//		User user = getUserByEmail(email);
+//		String verificationToken = sendEmailWithUniqueVerificationTokenAndPersistToken(user.getEmail());
+//		if getUserByVerificationToken(verificationToken).getid() == user.getId() {
+//			changeUserPassword (user, user.getPassword(), newPassword, repeatedPassword);
+//		}
+//			}
+	
+	
 
 	@Override
 	public boolean changeUserStatus(User user, UserStatus status) {
@@ -137,14 +145,27 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void changeUserEmail(User user, String newEmail) {
+	public boolean changeUserEmail(User user, String newEmail) {
 		if (!newEmail.toLowerCase().equals(user.getEmail().toLowerCase())) {
 			sendConfirmationEmail(user, newEmail);
-			user.setEmail(newEmail);
+			user.setEmail(newEmail.toLowerCase());
+			return true;
+		}else {
+			return false;
 		}
-
 	}
 
+	@Override
+	public boolean changeUserPassword(User user, String password, String newPassword, String repeatedPassword) {
+		if (newPassword.equals(repeatedPassword)) {
+			user.setPassword(newPassword);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
 	public User giveLike(String login, Integer postId) {
 		User user = this.getUserByLogin(login);
 		ArrayList<String> arr = user.getLikedPosts();

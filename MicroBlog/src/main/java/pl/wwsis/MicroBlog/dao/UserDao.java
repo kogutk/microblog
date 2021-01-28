@@ -21,12 +21,16 @@ public interface UserDao {
 	User login(String email, String password);
 	
 	String logout(int userId);
+	
+//	boolean resetForgottenPassword(String email);
 		
 	boolean changeUserStatus(User user, UserStatus status);
 	
 	void changeBasicUserDetails(User user, String login, String firstName, String lastName, String dob, Character gender) throws ParseException;
 	
-	void changeUserEmail (User user, String newEmail);
+	boolean changeUserEmail (User user, String newEmail);
+	
+	boolean changeUserPassword (User user, String password, String newPassword, String repeatedPassword);
 	
 	void sendConfirmationEmail (User user, String newEmail);
 	
