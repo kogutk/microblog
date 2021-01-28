@@ -189,6 +189,38 @@ public class TestMicroblogServiceImpl {
 		assertEquals(0, testUser14.getAmountOfFollowee());
 		
 	}
+	
+	@Test
+	public void  TestAddTagToPost() {
+		//when
+		User testUser6 = microblogServiceImpl.registerUser("testowyLogin_401", "test401@test.com", "123pasS4%56ss", "Jan", "Kowalski", 'M', "1990-01-01");								
+		Integer userId = testUser6.getId();
+		Post newPost = microblogServiceImpl.createNewPost(testUser6, "testowyPost6", true);
+
+		String tagTest = "#testTag";
+		ArrayList<String> tags = newPost.getTags();
+		tags.add(tagTest);
+		microblogServiceImpl.addTagToPost(newPost.getPostId(), tags);
+
+		//then
+		assertTrue(newPost.getTags().contains(tagTest));
+	}
+	
+	@Test
+	public void TestAddCommentToPost() {
+		//when
+		User testUser6 = microblogServiceImpl.registerUser("testowyLogin_402", "test402@test.com", "123pasS4%56ss", "Jan", "Kowalski", 'M', "1990-01-01");								
+		Integer userId = testUser6.getId();
+		Post newPost = microblogServiceImpl.createNewPost(testUser6, "testowyPost6", true);
+		
+		String commentTest = "comment Test";
+		ArrayList<String> comments = newPost.getComments();
+		comments.add(commentTest);
+		microblogServiceImpl.addCommentToPost(newPost.getPostId(), comments);
+		
+		//then
+		assertTrue(newPost.getComments().contains(commentTest));
+	}
 
 	@Test
 	public void TestShouldGetListOfUsersFollowers(){

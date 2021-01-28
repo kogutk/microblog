@@ -1,6 +1,7 @@
 package pl.wwsis.MicroBlog.service.impl;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,16 @@ public class MicroblogServiceImpl implements MicroblogService {
 	public Post createNewPost(User user, String content, Boolean isPublic) {
 		Post newPost = postDaoImpl.addPostOfUser(user, content, isPublic);
 		return newPost;
+	}
+	
+	@Override
+	public Post addCommentToPost(Integer postId, ArrayList<String> comments) {
+		return postDaoImpl.addCommentToPost(postId, comments);
+	}
+	
+	@Override
+	public Post addTagToPost(Integer postId, ArrayList<String> tags) {
+		return postDaoImpl.addTagToPost(postId, tags);
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import pl.wwsis.MicroBlog.model.User;
 import pl.wwsis.MicroBlog.model.Follower;
 
 import java.util.List;
+import java.util.ArrayList;
 
 
 
@@ -48,6 +49,10 @@ public interface MicroblogService {
 	 * @return Post
 	 */
 	Post createNewPost(User user, String content, Boolean isPublic);
+	
+	Post addCommentToPost(Integer postId, ArrayList<String> commments);
+	
+	Post addTagToPost (Integer postId, ArrayList<String> tags);
 	
 	/**
 	 * Get user by login
