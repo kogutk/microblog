@@ -169,8 +169,7 @@ public class TestMicroblogServiceImpl {
 		
 		microblogServiceImpl.addFolloweeOfUser(testUser11, testUser12);
 		Follower findedFollower = microblogServiceImpl.findFolloweeOfUser(testUser11, testUser12);
-		System.out.print("%%%%%%%%%%%%%%" + findedFollower);
-		System.out.print("^^^^%$%%%%" + testUser12.getId());
+
 		//then
 		assertEquals(findedFollower.getFollowsUserId(), testUser12.getId());
 	}
@@ -245,6 +244,30 @@ public class TestMicroblogServiceImpl {
 		}
 	}
 	
+	@Test
+	public void TestLikePostByUser() {
+		//when
+		User testUser_1 = microblogServiceImpl.registerUser("testowyLogin_311", "test_311@test.com", "123pas%S456ss", "Jane", "Kowalski", 'F', "1990-01-01");
+		Post testPost_1 = microblogServiceImpl.createNewPost(testUser_1, "CONTENT", true);
+		User userAfterLike = microblogServiceImpl.likePostByUser(testUser_1.getLogin(), testPost_1.getPostId());
+		String idFromUserLikedPost = userAfterLike.getLikedPosts().get(0);
+		
+		//then
+		assertNotNull(idFromUserLikedPost);
+		assertEquals(testPost_1.getPostId(), Integer.parseInt(idFromUserLikedPost) );
+	}
 	
+	@Test
+	public void TestUnLikePostByUser() {
+		//when
+		User testUser_1 = microblogServiceImpl.registerUser("testowyLogin_312", "test_312@test.com", "123pas%S456ss", "Jane", "Kowalski", 'F', "1990-01-01");
+		Post testPost_1 = microblogServiceImpl.createNewPost(testUser_1, "CONTENT", true);
+		
+		microblogServiceImpl.likePostByUser(testUser_1.getLogin(), testPost_1.getPostId());
+		User userAfterUnlikePost = microblogServiceImpl.unlikePostByUser(testUser_1.getLogin(), testPost_1.getPostId());
+		
+		//then
+		assertEquals(0, userAfterUnlikePost.getLikedPosts().size());
+	}
 
 }
