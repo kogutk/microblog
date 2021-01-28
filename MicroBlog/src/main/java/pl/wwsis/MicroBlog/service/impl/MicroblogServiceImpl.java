@@ -95,4 +95,18 @@ public class MicroblogServiceImpl implements MicroblogService {
 		List<Follower> followers = followerDaoImpl.getListOfFollowers(user);
 		return followers;
 	}
+
+	@Override
+	public User likePostByUser(String login, Integer postId) {
+		User user = userDaoImpl.giveLike(login, postId);
+		postDaoImpl.getLikedByUser(postId);
+		return user;
+	}
+
+	@Override
+	public User unlikePostByUser(String login, Integer postId) {
+		User user = userDaoImpl.giveUnLike(login, postId);
+		postDaoImpl.getLikedByUser(postId);
+		return user;
+	}
 }

@@ -71,6 +71,22 @@ public interface MicroblogService {
 			String password, String firstName,
 			String lastName, Character gender,
 			String dob);
+
+	/**
+	 * Liked post by user.
+	 * @param login
+	 * @param postId
+	 * @return user
+	 */
+	User likePostByUser(String login, Integer postId);
+	
+	/**
+	 * Unlike post.
+	 * @param login
+	 * @param postId
+	 * @return user
+	 */
+	User unlikePostByUser(String login, Integer postId);
 	
 	/**
 	 * Add user to being tracked by the current logged user.
@@ -102,14 +118,4 @@ public interface MicroblogService {
 	 * @return List<follower>
 	 */
 	List<Follower> getListOfUsersFollowers (User user);
-
-
-
-
-
-
-
-
-
-
 }
