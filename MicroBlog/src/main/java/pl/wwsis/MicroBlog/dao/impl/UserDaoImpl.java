@@ -5,12 +5,14 @@ import pl.wwsis.MicroBlog.model.User;
 import pl.wwsis.MicroBlog.model.UserStatus;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
+
 
 @Transactional
 @Component
@@ -25,14 +27,12 @@ public class UserDaoImpl implements UserDao {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		Date string2Date = simpleDateFormat.parse(dateAsString);
 		return string2Date;
-
 	}
 
 	@Override
 	public User getUserById(int userId) {
 		User user = entityManager.find(User.class, userId);
 		return user;
-
 	}
 
 	@Override
@@ -52,18 +52,16 @@ public class UserDaoImpl implements UserDao {
 		query.setParameter("email", email);
 		User user = (User) query.getSingleResult();
 		return user;
-
 	}
 
 	@Override
 	public User registerUser(String name, String email, String password, String firstName, String lastName,
 			Character gender, String dob) throws ParseException {
 
-		User user = new User(name, email, password, firstName, lastName, gender, string2Date(dob), 0, 0);
+		User user = new User(name, email, password, firstName, lastName, gender, string2Date(dob));
+
 		entityManager.persist(user);
-
 		return user;
-
 	}
 
 	@Override
@@ -97,9 +95,7 @@ public class UserDaoImpl implements UserDao {
 		if (!status.equals(user.getStatus())) {
 			user.setStatus(status);
 			return true;
-		}
-
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -134,20 +130,41 @@ public class UserDaoImpl implements UserDao {
 		}
 
 	}
-	
-	
+
 	@Override
-	public void sendConfirmationEmail (User user, String newEmail) {
-		//TO DO
+	public void sendConfirmationEmail(User user, String newEmail) {
+		// TO DO
 	}
 
-	
 	@Override
 	public void changeUserEmail(User user, String newEmail) {
 		if (!newEmail.toLowerCase().equals(user.getEmail().toLowerCase())) {
-			sendConfirmationEmail(user,newEmail);
+			sendConfirmationEmail(user, newEmail);
 			user.setEmail(newEmail);
 		}
 
 	}
+
+	public User giveLike(String login, Integer postId) {
+		User user = this.getUserByLogin(login);
+		ArrayList<String> arr = user.getLikedPosts();
+		arr.add(postId.toString());
+		user.setLikedPosts(arr);
+		entityManager.merge(user);
+
+		return user;
+	}
+
+	@Override
+	public User giveUnLike(String login, Integer postId) {
+		User user = this.getUserByLogin(login);
+
+		ArrayList<String> arr = user.getLikedPosts();
+		arr.remove(postId.toString());
+		user.setLikedPosts(arr);
+		entityManager.merge(user);
+
+		return user;
+	}
+
 }

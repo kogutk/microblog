@@ -2,7 +2,6 @@ package pl.wwsis.MicroBlog.dao;
 
 import java.text.ParseException;
 import java.util.Date;
-
 import pl.wwsis.MicroBlog.model.User;
 import pl.wwsis.MicroBlog.model.UserStatus;
 
@@ -22,14 +21,6 @@ public interface UserDao {
 	User login(String email, String password);
 	
 	String logout(int userId);
-	
-	//reset password- met zwracająca token; wchodzi (user), zwraca token, potem metoda wchodzi (user + token+ nowy password+ powtórz password) i zmienia password
-	
-	//zmiana password jako zalogowany (wchodzi user, bieżacy password, nowy password, repeat password)
-	
-	//zmiana maila - wchodzi user + new mail return token i zapisuje?, ?potem kolejna metoda wchodzi User + token + 
-	
-	
 		
 	boolean changeUserStatus(User user, UserStatus status);
 	
@@ -39,6 +30,9 @@ public interface UserDao {
 	
 	void sendConfirmationEmail (User user, String newEmail);
 	
-    
+	User giveLike(String login, Integer postId);
+
+    User giveUnLike(String login, Integer postId);
+	
 }
 

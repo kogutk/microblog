@@ -89,4 +89,10 @@ public class MicroblogServiceImpl implements MicroblogService {
 		Follower deletedFollower = followerDaoImpl.deleteFolloweeOfUser(user, followee);
 		return deletedFollower;
 	}
+
+	@Override
+	public List<Follower> getListOfUsersFollowers(User user) {
+		List<Follower> followers = followerDaoImpl.getListOfFollowers(user);
+		return followers;
+	}
 }

@@ -7,14 +7,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.ArrayList;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import pl.wwsis.MicroBlog.dao.impl.UserDaoImpl;
 import pl.wwsis.MicroBlog.model.User;
 import pl.wwsis.MicroBlog.model.UserStatus;
@@ -28,33 +30,31 @@ public class TestUserDaoImpl {
 	@Autowired
 	UserDaoImpl userDaoImpl;
 	
-	@BeforeEach
-	void setUp() throws Exception {
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
+	private ArrayList<String> arrayWithPostId;
+	
+	@Before
+	public void setUp() {
+		arrayWithPostId = new ArrayList<String>();
 	}
 	
+	@AfterEach
+	public void tearDown() {
+		arrayWithPostId = null;
+	}
 	
 	@Test
 	public void TestString2Date() {
 		try {
-        Date date = Calendar.getInstance().getTime();         
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");        
-       
-        String strDate = dateFormat.format(date);  		
-        Date dateAsString2Date = userDaoImpl.string2Date(strDate);  
-		
-		assertEquals(dateFormat.format(date), dateFormat.format(dateAsString2Date));
-		
+	        Date date = Calendar.getInstance().getTime();         
+	        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");        
+	        String strDate = dateFormat.format(date);  		
+	        Date dateAsString2Date = userDaoImpl.string2Date(strDate);  
+			
+			assertEquals(dateFormat.format(date), dateFormat.format(dateAsString2Date));
 		} catch (ParseException e) {
-		
 			e.printStackTrace();
 		}
 	}
-	
-	
 	
 	@Test
 	public void TestRegisterUser() {
@@ -73,81 +73,70 @@ public class TestUserDaoImpl {
 	@Test
 	public void TestGetUserById() {
 		try {
-		User testUser = userDaoImpl.registerUser("testowyLogin0", "test0@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
-		assertEquals(testUser.getId(), userDaoImpl.getUserById(testUser.getId()).getId());
-		
+			User testUser = userDaoImpl.registerUser("testowyLogin0", "test0@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+			assertEquals(testUser.getId(), userDaoImpl.getUserById(testUser.getId()).getId());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
-	
+		
 	@Test
 	public void TestGetUserByLogin() {
 		try {
-		User testUser = userDaoImpl.registerUser("testowyLogin_2", "test2@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
-		assertEquals(testUser.getLogin(), userDaoImpl.getUserByLogin(testUser.getLogin()).getLogin());
+			User testUser = userDaoImpl.registerUser("testowyLogin_2", "test2@test.com", "passs%sssS9sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+			assertEquals(testUser.getLogin(), userDaoImpl.getUserByLogin(testUser.getLogin()).getLogin());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+		
 	@Test
 	public void TestGetUserByEmail() {
 		try {
-		User testUser = userDaoImpl.registerUser("testowyLogin_2a", "test2a@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
-		assertEquals(testUser.getEmail(), userDaoImpl.getUserByEmail(testUser.getEmail()).getEmail());
+			User testUser = userDaoImpl.registerUser("testowyLogin_2a", "test2a@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+			assertEquals(testUser.getEmail(), userDaoImpl.getUserByEmail(testUser.getEmail()).getEmail());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+		
 	@Test
 	public void TestLogin() {
 		try {
-		User testUser = userDaoImpl.registerUser("testowyLogin_3", "test3@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
-		User loggedInUser=userDaoImpl.login(testUser.getEmail(), testUser.getPassword());
-		assertEquals(loggedInUser.getId(), testUser.getId());		
-		assertTrue(loggedInUser.isLogged());
-		assertEquals(loggedInUser.getStatus(), UserStatus.ACTIVE);		
+			User testUser = userDaoImpl.registerUser("testowyLogin_989", "test989@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User loggedInUser=userDaoImpl.login(testUser.getEmail(), testUser.getPassword());
+			
+			assertEquals(loggedInUser.getId(), testUser.getId());		
+			assertTrue(loggedInUser.isLogged());
+			assertEquals(loggedInUser.getStatus(), UserStatus.ACTIVE);		
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
 
-	
-	
 	@Test
 	public void TestLogout() throws ParseException {
 		try {
-		User testUser = userDaoImpl.registerUser("testowyLogin_55", "test55@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
-		userDaoImpl.login(testUser.getEmail(), testUser.getPassword());
-		String logoutStatement= userDaoImpl.logout(testUser.getId());	
-		assertEquals(logoutStatement, "You've been successfully logged out");
-		assertFalse(testUser.isLogged());
-		assertEquals(testUser.getStatus(), UserStatus.INVISIBLE);
-	
+			User testUser = userDaoImpl.registerUser("testowyLogin_55", "test55@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+			userDaoImpl.login(testUser.getEmail(), testUser.getPassword());
+			String logoutStatement= userDaoImpl.logout(testUser.getId());	
+			
+			assertEquals(logoutStatement, "You've been successfully logged out");
+			assertFalse(testUser.isLogged());
+			assertEquals(testUser.getStatus(), UserStatus.INVISIBLE);
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}
-				
+		}				
 	}
-
-	
 
 	@Test
 	public void TestChangeUserStatus() {
 		try {
-		User testUser = userDaoImpl.registerUser("testowyLogin_66", "test66@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
-		UserStatus newUserStatus= UserStatus.OCCUPIED;
-		assertTrue(userDaoImpl.changeUserStatus(testUser, newUserStatus));
-		assertEquals(testUser.getStatus(), newUserStatus);
-		
+			User testUser = userDaoImpl.registerUser("testowyLogin_66", "test66@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+			UserStatus newUserStatus= UserStatus.OCCUPIED;
+			
+			assertTrue(userDaoImpl.changeUserStatus(testUser, newUserStatus));
+			assertEquals(testUser.getStatus(), newUserStatus);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -157,11 +146,11 @@ public class TestUserDaoImpl {
 	@Test
 	public void TestChangeUserStatusNothingToChange() {
 		try {
-		User testUser = userDaoImpl.registerUser("testowyLogin_77", "test77@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
-		UserStatus currentStatus= testUser.getStatus();
-		assertFalse(userDaoImpl.changeUserStatus(testUser, currentStatus));
-		assertEquals(testUser.getStatus(), currentStatus);
-		
+			User testUser = userDaoImpl.registerUser("testowyLogin_77", "test77@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+			UserStatus currentStatus= testUser.getStatus();
+			
+			assertFalse(userDaoImpl.changeUserStatus(testUser, currentStatus));
+			assertEquals(testUser.getStatus(), currentStatus);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -170,14 +159,14 @@ public class TestUserDaoImpl {
 	@Test
 	public void TestChangeBasicUserDetails() {
 		try {
-		User testUser = userDaoImpl.registerUser("testowyLogin_88", "test88@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
-		userDaoImpl.changeBasicUserDetails(testUser, "testowyLogin_00", "Janusz", "Malinowski", "2000-01-01", 'F');
-		assertEquals(testUser.getLogin(), "testowyLogin_00");
-		assertEquals(testUser.getFirstName(), "Janusz");
-		assertEquals(testUser.getLastName(), "Malinowski");	
-		assertEquals(testUser.getDob(), userDaoImpl.string2Date("2000-01-01"));
-		assertEquals(testUser.getGender(), 'F');	
-		
+			User testUser = userDaoImpl.registerUser("testowyLogin_88", "test88@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+			userDaoImpl.changeBasicUserDetails(testUser, "testowyLogin_00", "Janusz", "Malinowski", "2000-01-01", 'F');
+			
+			assertEquals(testUser.getLogin(), "testowyLogin_00");
+			assertEquals(testUser.getFirstName(), "Janusz");
+			assertEquals(testUser.getLastName(), "Malinowski");	
+			assertEquals(testUser.getDob(), userDaoImpl.string2Date("2000-01-01"));
+			assertEquals(testUser.getGender(), 'F');	
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -189,11 +178,51 @@ public class TestUserDaoImpl {
 		try {
 			User testUser = userDaoImpl.registerUser("testowyLogin_99", "test99@test.com", "passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
 			userDaoImpl.changeUserEmail(testUser, "newtest99@test.com");
-			assertEquals(testUser.getEmail(), "newtest99@test.com");	
 			
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			assertEquals(testUser.getEmail(), "newtest99@test.com");	
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
+	@Test
+	public void TestGiveLike() {
+		try {
+			User testUser = userDaoImpl.registerUser("testowyLogin_3", "test3@test.com", "passssss%S9sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+			Integer postId = 192;
+			Integer postId2 = 62;
+			
+			userDaoImpl.giveLike(testUser.getLogin(), postId);
+			User testUserWithLikedPost = userDaoImpl.giveLike(testUser.getLogin(), postId2);
+			
+			arrayWithPostId.add("192");
+			arrayWithPostId.add("62");
+			
+			assertEquals(arrayWithPostId, testUserWithLikedPost.getLikedPosts());
+			assertEquals(2, testUserWithLikedPost.getLikedPosts().size());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void TestGiveUnLike() {
+		try {
+			User testUser = userDaoImpl.registerUser("testowyLogin_455", "test455@test.com", "passssssS9s%ssssss", "Jan", "Kowalski", 'M', "1990-01-01");
+			Integer postId = 242;
+			Integer postId2 = 51;
+			
+			userDaoImpl.giveLike(testUser.getLogin(), postId);
+			userDaoImpl.giveLike(testUser.getLogin(), postId2);
+			User testUserWithLikedPost2 = userDaoImpl.giveUnLike(testUser.getLogin(), postId);
+
+			arrayWithPostId.add("51");
+
+			assertEquals(arrayWithPostId, testUserWithLikedPost2.getLikedPosts());
+			assertEquals(1, testUserWithLikedPost2.getLikedPosts().size());		
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
