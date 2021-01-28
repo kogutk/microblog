@@ -49,10 +49,14 @@ public class User {
 	@Pattern(regexp = "(?=\\S+$).+", message = "Password must contain no whitespace.")
 	private String password;
 
+	@NotNull(message = "Firstname cannot be null")
+	@NotBlank(message = "Firstname cannot be blank")
 	@Column(name = "firstName", length = 200)
 	@Size(max = 200, message = "FirstName must be between less than 200 characters")
 	private String firstName;
 
+	@NotNull(message = "Lastname cannot be null")
+	@NotBlank(message = "Lastname cannot be blank")
 	@Column(name = "lastName", length = 200)
 	@Size(max = 200, message = "LastName must be between less than 200 characters")
 	private String lastName;
