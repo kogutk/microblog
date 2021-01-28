@@ -5,12 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import javax.validation.constraints.NotBlank;
@@ -44,14 +40,13 @@ public class User {
 
 	@Column(name = "password", length = 100)
 	@NotNull(message = "Password cannot be null")
-	@NotBlank(message = "Login cannot be blank")
+	@NotBlank(message = "Password cannot be blank")
 	@Size(min = 10, max = 100, message = "Password must be between 10 and 200 characters")
+	@Pattern(regexp = "(?=.*[`~!@#$%^&*()\\-_=+\\\\|\\[{\\]};:'\",<.>/?]).+", message = "Password must contain one special character.")
 	@Pattern(regexp = "(?=.*[0-9]).+", message = "Password must contain one digit.")
 	@Pattern(regexp = "(?=.*[a-z]).+", message = "Password must contain one lowercase letter.")
 	@Pattern(regexp = "(?=.*[A-Z]).+", message = "Password must contain one upper letter.")
-	@Pattern(regexp = "(?=.*[!@#$%^&*+=?-_()/\"\\.,<>~`;:]).+", message = "Password must contain one special character.")
 	@Pattern(regexp = "(?=\\S+$).+", message = "Password must contain no whitespace.")
-
 	private String password;
 
 	@Column(name = "firstName", length = 200)
@@ -77,6 +72,8 @@ public class User {
 
 	@Column(name = "amountOfFollowee")
 	private int amountOfFollowee;
+	
+	private boolean isLogged;
 
 	@Column(name = "likedPosts")
 	private ArrayList<String> likedPosts;
@@ -100,6 +97,7 @@ public class User {
 			this.amountOfFollowers = 0;
 			this.amountOfFollowee = 0;
 			this.likedPosts = new ArrayList<String>();
+			this.isLogged=false;
 	}
 
 	public int getId() {
@@ -193,4 +191,16 @@ public class User {
 	public void setLikedPosts(ArrayList<String> likedPosts) {
 		this.likedPosts = likedPosts;
 	}
+	
+	public boolean isLogged() {
+		return isLogged;
+	}
+
+	public void setLogged(boolean isLogged) {
+		this.isLogged = isLogged;
+	}
+
+
+	
+
 }

@@ -31,7 +31,8 @@ public class TestPostDaoImpl {
 	@Test
 	public void TestGetTimelineOfUser() {
 		try {
-			User testUser = userDaoImpl.registerUser("testowyLogin_21", "test21@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser = userDaoImpl.registerUser("testowyLogin_21", "test21@test.com", "123p%asS456ss", "Jan",
+					"Kowalski", 'M', "1990-01-01");
 			postDaoImpl.addPostOfUser(testUser, "testowyPost123", true);
 
 			assertEquals(1, postDaoImpl.getTimelineOfUser(testUser).size());
@@ -44,7 +45,8 @@ public class TestPostDaoImpl {
 	public void TestGetFullTimelineOfUser() {
 		List<Post> postListTest = new ArrayList<>();
 		try {
-			User testUser = userDaoImpl.registerUser("testowyLogin_22", "test22@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser = userDaoImpl.registerUser("testowyLogin_22", "test22@test.com", "123pas%S456ss", "Jan",
+					"Kowalski", 'M', "1990-01-01");
 			postDaoImpl.addPostOfUser(testUser, "testowyPost123", true);
 			postDaoImpl.addPostOfUser(testUser, "testowyPost23", true);
 			postDaoImpl.addPostOfUser(testUser, "testowyPost3", false);
@@ -61,7 +63,8 @@ public class TestPostDaoImpl {
 		List<Post> postListTest = new ArrayList<>();
 		postDaoImpl.deleteAllPosts();
 		try {
-			User testUser = userDaoImpl.registerUser("testowyLogin_23", "test23@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser = userDaoImpl.registerUser("testowyLogin_23", "test23@test.com", "123pa%sS456ss", "Jan",
+					"Kowalski", 'M', "1990-01-01");
 			postDaoImpl.addPostOfUser(testUser, "testowyPost123", true);
 			postDaoImpl.addPostOfUser(testUser, "testowyPost23", true);
 			postDaoImpl.addPostOfUser(testUser, "testowyPost3", false);
@@ -77,7 +80,8 @@ public class TestPostDaoImpl {
 	public void TestDeleteAllPosts() {
 		List<Post> postListTest = new ArrayList<>();
 		try {
-			User testUser = userDaoImpl.registerUser("testowyLogin_24", "test24@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser = userDaoImpl.registerUser("testowyLogin_24", "test24@test.com", "123%pasS456ss", "Jan",
+					"Kowalski", 'M', "1990-01-01");
 			postDaoImpl.addPostOfUser(testUser, "testowyPost123", true);
 			postDaoImpl.addPostOfUser(testUser, "testowyPost23", true);
 			postDaoImpl.addPostOfUser(testUser, "testowyPost3", false);
@@ -93,7 +97,8 @@ public class TestPostDaoImpl {
 	@Test
 	public void TestAddPostOfUser() {
 		try {
-			User testUser = userDaoImpl.registerUser("testowyLogin_25", "test25@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser = userDaoImpl.registerUser("testowyLogin_25", "test25@test.com", "123pas%S456ss", "Jan",
+					"Kowalski", 'M', "1990-01-01");
 			postDaoImpl.addPostOfUser(testUser, "testowyPost123", true);
 
 			assertEquals(1, postDaoImpl.getTimelineOfUser(testUser).size());
@@ -105,7 +110,8 @@ public class TestPostDaoImpl {
 	@Test
 	public void TestGetLikedByUser() {
 		try {
-			User testUser = userDaoImpl.registerUser("testowyLogin_26", "test26@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser = userDaoImpl.registerUser("testowyLogin_26", "test26@test.com", "123pas%S456ss", "Jan",
+					"Kowalski", 'M', "1990-01-01");
 			Post testPostLike = postDaoImpl.addPostOfUser(testUser, "testowyPost123", true);
 
 			Post testPostAfterLike = postDaoImpl.getLikedByUser(testPostLike.getPostId());
@@ -119,7 +125,8 @@ public class TestPostDaoImpl {
 	@Test
 	public void TestGetUnLikedByUser() {
 		try {
-			User testUser = userDaoImpl.registerUser("testowyLogin_27", "test27@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser = userDaoImpl.registerUser("testowyLogin_27", "test27@test.com", "123pa%sS456ss", "Jan",
+					"Kowalski", 'M', "1990-01-01");
 			Post testPostLike = postDaoImpl.addPostOfUser(testUser, "testowyPost1235", true);
 
 			Post testPostAfterLike = postDaoImpl.getLikedByUser(testPostLike.getPostId());
@@ -136,7 +143,8 @@ public class TestPostDaoImpl {
 	@Test
 	public void TestAddCommentToPost() {
 		try {
-			User testUser = userDaoImpl.registerUser("testowyLogin_28", "test28@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser = userDaoImpl.registerUser("testowyLogin_28", "test28@test.com", "123pa%sS456ss", "Jan",
+					"Kowalski", 'M', "1990-01-01");
 			Post testPost = postDaoImpl.addPostOfUser(testUser, "testowyPost123", true);
 
 			assertEquals(1, postDaoImpl.getTimelineOfUser(testUser).size());
@@ -153,7 +161,8 @@ public class TestPostDaoImpl {
 	@Test
 	public void TestAddTagToPost() {
 		try {
-			User testUser = userDaoImpl.registerUser("testowyLogin_29", "test29@test.com", "123pasS456ss", "Jan", "Kowalski", 'M', "1990-01-01");
+			User testUser = userDaoImpl.registerUser("testowyLogin_29", "test29@test.com", "123pas%S456ss", "Jan",
+					"Kowalski", 'M', "1990-01-01");
 			Post testPost = postDaoImpl.addPostOfUser(testUser, "testowyPost123", true);
 
 			assertEquals(1, postDaoImpl.getTimelineOfUser(testUser).size());
