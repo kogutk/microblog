@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class TestMicroblogServiceImpl {
 	MicroblogServiceImpl microblogServiceImpl;
 	
 	@Test
-	public void TestShouldReturnAllPostsFromSpecificUser() {
+	public void TestShouldReturnAllPostsFromSpecificUser() throws ParseException {
 		//when
 		User testUser = microblogServiceImpl.registerUser("testowyLogin_101", "test101@test.com", "123pasS4%56ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		
@@ -42,7 +43,7 @@ public class TestMicroblogServiceImpl {
 	}
 
 	@Test
-	public void TestShouldGetAllPostsFromSpecificUserAndHisFollowers() {
+	public void TestShouldGetAllPostsFromSpecificUserAndHisFollowers() throws ParseException {
 		//when
 		User testUser2 = microblogServiceImpl.registerUser("testowyLogin_202", "test202@test.com", "123pasS456%ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		User testUser3 = microblogServiceImpl.registerUser("testowyLogin_303", "test303@test.com", "123pasS456%ss", "Jan", "Kowalski", 'M', "1990-01-01");								
@@ -60,7 +61,7 @@ public class TestMicroblogServiceImpl {
 	}
 	
 	@Test
-	public void TestShouldDeleteAllPosts() {
+	public void TestShouldDeleteAllPosts() throws ParseException {
 		//when
 		User testUser2 = microblogServiceImpl.registerUser("testowyLogin_606", "test606@test.com", "123pasS456%ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		User testUser3 = microblogServiceImpl.registerUser("testowyLogin_707", "test707@test.com", "123pasS456%ss", "Jan", "Kowalski", 'M', "1990-01-01");								
@@ -77,7 +78,7 @@ public class TestMicroblogServiceImpl {
 	}
 	
 	@Test
-	public void TestShouldGetAllPosts() {
+	public void TestShouldGetAllPosts() throws ParseException {
 		//removed all posts
 		microblogServiceImpl.deleteAllPosts();
 		
@@ -97,7 +98,7 @@ public class TestMicroblogServiceImpl {
 	}
 	
 	@Test
-	public void TestShouldCreateNewPost() {
+	public void TestShouldCreateNewPost() throws ParseException {
 		//when
 		User testUser6 = microblogServiceImpl.registerUser("testowyLogin_60", "test60@test.com", "123pasS4%56ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		Integer userId = testUser6.getId();
@@ -111,7 +112,7 @@ public class TestMicroblogServiceImpl {
 	}
 	
 	@Test
-	public void TestShouldGetUserByLogin() {
+	public void TestShouldGetUserByLogin() throws ParseException {
 		//when
 		User testUser7 = microblogServiceImpl.registerUser("testowyLogin_7", "test7@test.com", "123pasS4%56ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		String userLogin = testUser7.getLogin();
@@ -133,7 +134,7 @@ public class TestMicroblogServiceImpl {
 	}
 	
 	@Test
-	public void TestShouldRegisterUser() {
+	public void TestShouldRegisterUser() throws ParseException {
 		//when
 		User testUser8 = microblogServiceImpl.registerUser("testowyLogin_8", "test8@test.com", "123pasS45%6ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		String userLogin = testUser8.getLogin();
@@ -146,7 +147,7 @@ public class TestMicroblogServiceImpl {
 	}
 	
 	@Test
-	public void TestShouldAddFolloweeOfUser() {
+	public void TestShouldAddFolloweeOfUser() throws ParseException {
 		//when
 		User testUser9 = microblogServiceImpl.registerUser("testowyLogin_9", "test9@test.com", "123pasS4%56ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		User testUser10 = microblogServiceImpl.registerUser("testowyLogin_10", "test10@test.com", "123pasS%456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
@@ -162,7 +163,7 @@ public class TestMicroblogServiceImpl {
 	}
 	
 	@Test
-	public void TestShouldFindFolloweeOfUser() {
+	public void TestShouldFindFolloweeOfUser() throws ParseException {
 		//when
 		User testUser11 = microblogServiceImpl.registerUser("testowyLogin_110", "test11@test.com", "123pasS%456ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		User testUser12 = microblogServiceImpl.registerUser("testowyLogin_120", "test12@test.com", "123pasS4%56ss", "Jan", "Kowalski", 'M', "1990-01-01");								
@@ -174,9 +175,9 @@ public class TestMicroblogServiceImpl {
 		//then
 		assertEquals(findedFollower.getFollowsUserId(), testUser12.getId());
 	}
-	
+
 	@Test
-	public void TestShouldDeleteFolloweeOfUser() {
+	public void TestShouldDeleteFolloweeOfUser() throws ParseException {
 		//when
 		User testUser13 = microblogServiceImpl.registerUser("testowyLogin_130", "test130@test.com", "123pasS4%56ss", "Jan", "Kowalski", 'M', "1990-01-01");								
 		User testUser14 = microblogServiceImpl.registerUser("testowyLogin_140", "test140@test.com", "123pasS4%56ss", "Jan", "Kowalski", 'M', "1990-01-01");								
@@ -192,7 +193,7 @@ public class TestMicroblogServiceImpl {
 	}
 
 	@Test
-	public void TestShouldGetListOfUsersFollowers(){
+	public void TestShouldGetListOfUsersFollowers() throws ParseException{
 		List<Follower> followers = new ArrayList<>();
 
 		User testUser_1 = microblogServiceImpl.registerUser("testowyLogin_251", "test_251@test.com", "123pas%S456ss", "Jane", "Kowalski", 'F', "1990-01-01");

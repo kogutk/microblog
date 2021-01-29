@@ -159,22 +159,21 @@ public class TestUserDaoImpl {
 					"passsss+sS9%sssssss", "Jan", "Kowalski", 'M', "1990-01-01");
 			long time = 5000;
 			String token = userDaoImpl.generateTokenForUser(testUser, time);
-			
+
 			User u = userDaoImpl.getUserById(testUser.getId());
 			assertEquals(u.getToken(), token);
 			assertNotNull(u.getTokenExpirationDate());
-		
+
 			try {
-				Thread.sleep(time+1000);
+				Thread.sleep(time + 1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			assertNull(u.getToken());
 			assertNull(u.getTokenExpirationDate());
-			
-			
+
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -301,25 +300,6 @@ public class TestUserDaoImpl {
 		}
 	}
 
-	@Test
-	public void TestGiveUnLike() {
-		try {
-			User testUser = userDaoImpl.registerUser("testowyLogin_455", "test455@test.com", "passssssS9s%ssssss",
-					"Jan", "Kowalski", 'M', "1990-01-01");
-			Integer postId = 242;
-			Integer postId2 = 51;
 
-			userDaoImpl.giveLike(testUser.getLogin(), postId);
-			userDaoImpl.giveLike(testUser.getLogin(), postId2);
-			User testUserWithLikedPost2 = userDaoImpl.giveUnLike(testUser.getLogin(), postId);
-
-			arrayWithPostId.add("51");
-
-			assertEquals(arrayWithPostId, testUserWithLikedPost2.getLikedPosts());
-			assertEquals(1, testUserWithLikedPost2.getLikedPosts().size());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-	}
 
 }

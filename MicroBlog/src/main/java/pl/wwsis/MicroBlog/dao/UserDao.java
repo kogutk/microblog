@@ -1,10 +1,8 @@
 package pl.wwsis.MicroBlog.dao;
 
+
 import java.text.ParseException;
 import java.util.Date;
-
-import javax.persistence.EntityManager;
-
 import pl.wwsis.MicroBlog.model.User;
 import pl.wwsis.MicroBlog.model.UserStatus;
 

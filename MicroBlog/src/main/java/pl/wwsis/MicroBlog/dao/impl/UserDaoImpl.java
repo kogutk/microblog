@@ -6,7 +6,6 @@ import pl.wwsis.MicroBlog.model.UserStatus;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import java.util.Timer;
@@ -47,7 +46,6 @@ public class UserDaoImpl implements UserDao {
 		query.setParameter("login", login);
 		User user = (User) query.getSingleResult();
 		return user;
-
 	}
 
 	@Override
@@ -92,7 +90,7 @@ public class UserDaoImpl implements UserDao {
 		User user = (User) query.getSingleResult();
 		user.setLogged(true);
 		user.setStatus(UserStatus.ACTIVE);
-		entityManager.persist(user);// jk
+		entityManager.persist(user);
 		return user;
 	}
 
@@ -101,7 +99,7 @@ public class UserDaoImpl implements UserDao {
 		User user = entityManager.find(User.class, userId);
 		user.setLogged(false);
 		user.setStatus(UserStatus.INVISIBLE);
-		entityManager.persist(user);// jk
+		entityManager.persist(user);
 		System.out.println("You've been successfully logged out");
 
 		return true;
@@ -217,7 +215,7 @@ public class UserDaoImpl implements UserDao {
 				user.setTokenExpirationDate(tokenExpirationDate);
 				entityManager.persist(user);
 				TimerTask task = new TimerTask() {
-				
+
 					public void run() {
 						deleteTokenExpired(user, expirationTime);
 					}
@@ -225,7 +223,7 @@ public class UserDaoImpl implements UserDao {
 				Timer timer = new Timer("ExpirationTimer");
 
 				timer.schedule(task, expirationTime);
-			
+
 			}
 
 		}
