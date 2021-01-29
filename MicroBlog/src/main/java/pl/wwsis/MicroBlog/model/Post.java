@@ -72,32 +72,4 @@ public class Post {
 		this.comments = new ArrayList<String>();
 		this.tags = new ArrayList<String>();
 	}
-
-	public int getAmountOfLike() {
-		return amountOfLike;
-	}
-
-	public void setAmountOfLike(int amountOfLike) {
-		this.amountOfLike = amountOfLike;
-	}
-
-	public int getPostId() {
-		return id;
-	}
-
-	public ArrayList<String> getComments() {
-		return comments;
-	}
-
-	public void setComments(ArrayList<String> comments) {
-		this.comments = comments;
-	}
-	
-	public ArrayList<String> getTags() {
-		return tags;
-	}
-	
-	public void setTags(ArrayList<String> tags) {
-		this.tags = tags;
-	}
 }

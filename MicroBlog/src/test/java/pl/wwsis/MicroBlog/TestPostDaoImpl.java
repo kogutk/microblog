@@ -114,7 +114,7 @@ public class TestPostDaoImpl {
 					"Kowalski", 'M', "1990-01-01");
 			Post testPostLike = postDaoImpl.addPostOfUser(testUser, "testowyPost123", true);
 
-			Post testPostAfterLike = postDaoImpl.getLikedByUser(testPostLike.getPostId());
+			Post testPostAfterLike = postDaoImpl.getLikedByUser(testPostLike.getId());
 
 			assertEquals(1, testPostAfterLike.amountOfLike());
 		} catch (ParseException e) {
@@ -129,10 +129,10 @@ public class TestPostDaoImpl {
 					"Kowalski", 'M', "1990-01-01");
 			Post testPostLike = postDaoImpl.addPostOfUser(testUser, "testowyPost1235", true);
 
-			Post testPostAfterLike = postDaoImpl.getLikedByUser(testPostLike.getPostId());
+			Post testPostAfterLike = postDaoImpl.getLikedByUser(testPostLike.getId());
 			assertEquals(1, testPostAfterLike.amountOfLike());
 
-			Post testPostAfterUnLike = postDaoImpl.getUnLikedByUser(testPostLike.getPostId());
+			Post testPostAfterUnLike = postDaoImpl.getUnLikedByUser(testPostLike.getId());
 			assertEquals(0, testPostAfterUnLike.amountOfLike());
 
 		} catch (ParseException e) {
@@ -151,7 +151,7 @@ public class TestPostDaoImpl {
 			String commentTextTest = "Test comment for Post";
 			ArrayList<String> testPostComments = testPost.getComments();
 			testPostComments.add(commentTextTest);
-			postDaoImpl.addCommentToPost(testPost.getPostId(), testPostComments);
+			postDaoImpl.addCommentToPost(testPost.getId(), testPostComments);
 			assertTrue(testPost.getComments().contains(commentTextTest));
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -169,7 +169,7 @@ public class TestPostDaoImpl {
 			String commentTagTest = "#tag1";
 			ArrayList<String> testPostTags = testPost.getTags();
 			testPostTags.add(commentTagTest);
-			postDaoImpl.addTagToPost(testPost.getPostId(), testPostTags);
+			postDaoImpl.addTagToPost(testPost.getId(), testPostTags);
 			assertTrue(testPost.getTags().contains(commentTagTest));
 		} catch (ParseException e) {
 			e.printStackTrace();

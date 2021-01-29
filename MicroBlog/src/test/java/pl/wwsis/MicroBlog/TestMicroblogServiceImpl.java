@@ -200,7 +200,7 @@ public class TestMicroblogServiceImpl {
 		String tagTest = "#testTag";
 		ArrayList<String> tags = newPost.getTags();
 		tags.add(tagTest);
-		microblogServiceImpl.addTagToPost(newPost.getPostId(), tags);
+		microblogServiceImpl.addTagToPost(newPost.getId(), tags);
 
 		//then
 		assertTrue(newPost.getTags().contains(tagTest));
@@ -216,7 +216,7 @@ public class TestMicroblogServiceImpl {
 		String commentTest = "comment Test";
 		ArrayList<String> comments = newPost.getComments();
 		comments.add(commentTest);
-		microblogServiceImpl.addCommentToPost(newPost.getPostId(), comments);
+		microblogServiceImpl.addCommentToPost(newPost.getId(), comments);
 		
 		//then
 		assertTrue(newPost.getComments().contains(commentTest));
@@ -249,12 +249,12 @@ public class TestMicroblogServiceImpl {
 		//when
 		User testUser_1 = microblogServiceImpl.registerUser("testowyLogin_311", "test_311@test.com", "123pas%S456ss", "Jane", "Kowalski", 'F', "1990-01-01");
 		Post testPost_1 = microblogServiceImpl.createNewPost(testUser_1, "CONTENT", true);
-		User userAfterLike = microblogServiceImpl.likePostByUser(testUser_1.getLogin(), testPost_1.getPostId());
+		User userAfterLike = microblogServiceImpl.likePostByUser(testUser_1.getLogin(), testPost_1.getId());
 		String idFromUserLikedPost = userAfterLike.getLikedPosts().get(0);
 		
 		//then
 		assertNotNull(idFromUserLikedPost);
-		assertEquals(testPost_1.getPostId(), Integer.parseInt(idFromUserLikedPost) );
+		assertEquals(testPost_1.getId(), Integer.parseInt(idFromUserLikedPost) );
 	}
 	
 	@Test
@@ -263,8 +263,8 @@ public class TestMicroblogServiceImpl {
 		User testUser_1 = microblogServiceImpl.registerUser("testowyLogin_312", "test_312@test.com", "123pas%S456ss", "Jane", "Kowalski", 'F', "1990-01-01");
 		Post testPost_1 = microblogServiceImpl.createNewPost(testUser_1, "CONTENT", true);
 		
-		microblogServiceImpl.likePostByUser(testUser_1.getLogin(), testPost_1.getPostId());
-		User userAfterUnlikePost = microblogServiceImpl.unlikePostByUser(testUser_1.getLogin(), testPost_1.getPostId());
+		microblogServiceImpl.likePostByUser(testUser_1.getLogin(), testPost_1.getId());
+		User userAfterUnlikePost = microblogServiceImpl.unlikePostByUser(testUser_1.getLogin(), testPost_1.getId());
 		
 		//then
 		assertEquals(0, userAfterUnlikePost.getLikedPosts().size());
