@@ -256,11 +256,11 @@ public class TestUserDaoImpl {
 	@Test
 	public void TestChangeUserEmail() {
 		try {
-			User u = userDaoImpl.registerUser("testowyLogin_99", "test99@test.com", "passsss+sS9%sssssss", "Jan",
+			User u = userDaoImpl.registerUser("testowyLogin_o99", "testo99@test.com", "passsss+sS9%sssssss", "Jan",
 					"Kowalski", 'M', "1990-01-01");
-			userDaoImpl.changeUserEmail(u, "newtest99@test.com");
+			userDaoImpl.changeUserEmail(u, "newtesto99@test.com");
 			User testUser = userDaoImpl.getUserById(u.getId());
-			assertEquals(testUser.getEmail(), "newtest99@test.com");
+			assertEquals(testUser.getEmail(), "newtesto99@test.com");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -299,7 +299,5 @@ public class TestUserDaoImpl {
 			e.printStackTrace();
 		}
 	}
-
-
 
 }
