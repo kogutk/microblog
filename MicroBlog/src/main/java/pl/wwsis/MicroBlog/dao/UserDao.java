@@ -2,6 +2,9 @@ package pl.wwsis.MicroBlog.dao;
 
 import java.text.ParseException;
 import java.util.Date;
+
+import javax.persistence.EntityManager;
+
 import pl.wwsis.MicroBlog.model.User;
 import pl.wwsis.MicroBlog.model.UserStatus;
 
@@ -16,14 +19,14 @@ public interface UserDao {
 	
 	User getUserByEmail(String email);
 	
+	User getUserByToken(String token);
+	
 	User registerUser(String login, String email, String password, String firstName, String lastName, Character gender, String dob) throws ParseException;
 	
 	User login(String email, String password);
 	
-	String logout(int userId);
+	boolean logout(int userId);
 	
-//	boolean resetForgottenPassword(String email);
-		
 	boolean changeUserStatus(User user, UserStatus status);
 	
 	void changeBasicUserDetails(User user, String login, String firstName, String lastName, String dob, Character gender) throws ParseException;
@@ -32,11 +35,18 @@ public interface UserDao {
 	
 	boolean changeUserPassword (User user, String password, String newPassword, String repeatedPassword);
 	
-	void sendConfirmationEmail (User user, String newEmail);
+	String generateTokenForUser(User user, long expiration);
+	
+	boolean validateUser(String email, String token);
+		
+	boolean sendEmail (String email, String content);
 	
 	User giveLike(String login, Integer postId);
 
     User giveUnLike(String login, Integer postId);
-	
+    
+    User addToken(User user,String token);
+    
+   
 }
 
