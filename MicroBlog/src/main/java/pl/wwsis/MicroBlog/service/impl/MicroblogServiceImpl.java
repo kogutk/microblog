@@ -2,6 +2,7 @@ package pl.wwsis.MicroBlog.service.impl;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -56,6 +57,16 @@ public class MicroblogServiceImpl implements MicroblogService {
 		Post newPost = postDaoImpl.addPostOfUser(user, content, isPublic);
 		return newPost;
 	}
+	
+	@Override
+	public Post addCommentToPost(Integer postId, ArrayList<String> comments) {
+		return postDaoImpl.addCommentToPost(postId, comments);
+	}
+	
+	@Override
+	public Post addTagToPost(Integer postId, ArrayList<String> tags) {
+		return postDaoImpl.addTagToPost(postId, tags);
+	}
 
 	@Override
 	public User getUserByLogin(String login) {
@@ -100,6 +111,7 @@ public class MicroblogServiceImpl implements MicroblogService {
 	}
 
 	@Override
+
 	public Date string2Date(String dateAsString) throws ParseException {
 		Date string2Date = userDaoImpl.string2Date(dateAsString);
 		return string2Date;
@@ -205,4 +217,19 @@ public class MicroblogServiceImpl implements MicroblogService {
 		return u;
 
 	}
+
+
+	public User likePostByUser(String login, Integer postId) {
+		User user = userDaoImpl.giveLike(login, postId);
+		postDaoImpl.getLikedByUser(postId);
+		return user;
+	}
+
+	@Override
+	public User unlikePostByUser(String login, Integer postId) {
+		User user = userDaoImpl.giveUnLike(login, postId);
+		postDaoImpl.getLikedByUser(postId);
+		return user;
+	}
 }
+

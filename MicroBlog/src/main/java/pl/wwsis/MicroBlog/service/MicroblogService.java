@@ -8,6 +8,7 @@ import pl.wwsis.MicroBlog.model.Follower;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 
 
@@ -53,6 +54,10 @@ public interface MicroblogService {
 	 */
 	Post createNewPost(User user, String content, Boolean isPublic);
 	
+	Post addCommentToPost(Integer postId, ArrayList<String> commments);
+	
+	Post addTagToPost (Integer postId, ArrayList<String> tags);
+	
 	/**
 	 * Get user by login
 	 * @param login
@@ -75,6 +80,24 @@ public interface MicroblogService {
 			String password, String firstName,
 			String lastName, Character gender,
 			String dob) throws ParseException;
+
+
+	/**
+	 * Liked post by user.
+	 * @param login
+	 * @param postId
+	 * @return user
+	 */
+	User likePostByUser(String login, Integer postId);
+	
+	/**
+	 * Unlike post.
+	 * @param login
+	 * @param postId
+	 * @return user
+	 */
+	User unlikePostByUser(String login, Integer postId);
+
 	
 	/**
 	 * Add user to being tracked by the current logged user.
@@ -107,6 +130,7 @@ public interface MicroblogService {
 	 */
 	List<Follower> getListOfUsersFollowers (User user);
 
+
 	Date string2Date (String dateAsString) throws ParseException;
 	
 	User getUserById(int userId);
@@ -138,12 +162,6 @@ public interface MicroblogService {
     User giveUnLike(String login, Integer postId);
     
     User addToken(User user,String token);
-
-
-
-
-
-
 
 
 }

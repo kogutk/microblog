@@ -15,12 +15,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -161,8 +156,7 @@ public class TestMicroblogServiceImpl {
 
 		microblogServiceImpl.addFolloweeOfUser(testUser11, testUser12);
 		Follower findedFollower = microblogServiceImpl.findFolloweeOfUser(testUser11, testUser12);
-		System.out.print("%%%%%%%%%%%%%%" + findedFollower);
-		System.out.print("^^^^%$%%%%" + testUser12.getId());
+
 		// then
 		assertEquals(findedFollower.getFollowsUserId(), testUser12.getId());
 	}
@@ -183,6 +177,40 @@ public class TestMicroblogServiceImpl {
 
 		assertEquals(0, testUser14.getAmountOfFollowee());
 
+	}
+
+	@Test
+	public void TestAddTagToPost() throws ParseException {
+		// when
+		User testUser6 = microblogServiceImpl.registerUser("testowyLogin_401", "test401@test.com", "123pasS4%56ss",
+				"Jan", "Kowalski", 'M', "1990-01-01");
+		Integer userId = testUser6.getId();
+		Post newPost = microblogServiceImpl.createNewPost(testUser6, "testowyPost6", true);
+
+		String tagTest = "#testTag";
+		ArrayList<String> tags = newPost.getTags();
+		tags.add(tagTest);
+		microblogServiceImpl.addTagToPost(newPost.getPostId(), tags);
+
+		// then
+		assertTrue(newPost.getTags().contains(tagTest));
+	}
+
+	@Test
+	public void TestAddCommentToPost() throws ParseException {
+		// when
+		User testUser6 = microblogServiceImpl.registerUser("testowyLogin_402", "test402@test.com", "123pasS4%56ss",
+				"Jan", "Kowalski", 'M', "1990-01-01");
+		Integer userId = testUser6.getId();
+		Post newPost = microblogServiceImpl.createNewPost(testUser6, "testowyPost6", true);
+
+		String commentTest = "comment Test";
+		ArrayList<String> comments = newPost.getComments();
+		comments.add(commentTest);
+		microblogServiceImpl.addCommentToPost(newPost.getPostId(), comments);
+
+		// then
+		assertTrue(newPost.getComments().contains(commentTest));
 	}
 
 	@Test
@@ -482,5 +510,33 @@ public class TestMicroblogServiceImpl {
 	 * assertEquals(2, testUserWithLikedPost.getLikedPosts().size()); } catch
 	 * (ParseException e) { e.printStackTrace(); } }
 	 */
+
+	@Test
+	public void TestLikePostByUser() throws ParseException {
+		// when
+		User testUser_1 = microblogServiceImpl.registerUser("testowyLogin_311", "test_311@test.com", "123pas%S456ss",
+				"Jane", "Kowalski", 'F', "1990-01-01");
+		Post testPost_1 = microblogServiceImpl.createNewPost(testUser_1, "CONTENT", true);
+		User userAfterLike = microblogServiceImpl.likePostByUser(testUser_1.getLogin(), testPost_1.getPostId());
+		String idFromUserLikedPost = userAfterLike.getLikedPosts().get(0);
+
+		// then
+		assertNotNull(idFromUserLikedPost);
+		assertEquals(testPost_1.getPostId(), Integer.parseInt(idFromUserLikedPost));
+	}
+
+	@Test
+	public void TestUnLikePostByUser() throws ParseException {
+		// when
+		User testUser_1 = microblogServiceImpl.registerUser("testowyLogin_312", "test_312@test.com", "123pas%S456ss",
+				"Jane", "Kowalski", 'F', "1990-01-01");
+		Post testPost_1 = microblogServiceImpl.createNewPost(testUser_1, "CONTENT", true);
+
+		microblogServiceImpl.likePostByUser(testUser_1.getLogin(), testPost_1.getPostId());
+		User userAfterUnlikePost = microblogServiceImpl.unlikePostByUser(testUser_1.getLogin(), testPost_1.getPostId());
+
+		// then
+		assertEquals(0, userAfterUnlikePost.getLikedPosts().size());
+	}
 
 }
