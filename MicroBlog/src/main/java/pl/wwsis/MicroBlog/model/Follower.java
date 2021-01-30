@@ -10,7 +10,6 @@ import lombok.Data;
 @Data
 @Entity
 @IdClass(FollowerId.class)
-
 @Table(name = "FOLLOWER")
 public class Follower {
 
@@ -21,14 +20,6 @@ public class Follower {
 	@Id
 	@Column(name = "followsUserId")
 	private int followsUserId;
-
-	public int getId() {
-		return id;
-	}
-
-	public int getFollowsUserId() {
-		return followsUserId;
-	}
 
 	public Follower() {
 	}

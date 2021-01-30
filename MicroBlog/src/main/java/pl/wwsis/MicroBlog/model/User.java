@@ -55,7 +55,7 @@ public class User {
 	@NotNull(message = "Firstname cannot be null")
 	@NotBlank(message = "Firstname cannot be blank")
 	@Column(name = "firstName", length = 200)
-	@Size(max = 200, message = "FirstName must less than 200 characters")
+	@Size(max = 200, message = "FirstName must be less than 200 characters")
 	private String firstName;
 
 	@NotNull(message = "Lastname cannot be null")
@@ -81,19 +81,17 @@ public class User {
 	private int amountOfFollowee;
 	
 	private boolean isLogged;
-	
+
     @Column(name = "token", length = 6)
 	private String token;
-	
+
 	@Column(name="tokenExpirationDate")
 	private Date tokenExpirationDate;
-	
+
 	@Column(name = "likedPosts")
 	private ArrayList<String> likedPosts;
-	
-	public User() {
-	}
 
+	public User(){}
 	public User(
 			String login, String email, String password,
 			String firstName, String lastName, Character gender,
@@ -112,125 +110,5 @@ public class User {
 			this.likedPosts = new ArrayList<String>();
 			this.isLogged=false;
 	}
-
-	public int getId() {
-		return id;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public Character getGender() {
-		return gender;
-	}
-
-	public void setGender(Character gender) {
-		this.gender = gender;
-	}
-
-	public Date getDob() {
-		return dob;
-	}
-
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
-
-	public UserStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(UserStatus status) {
-		this.status = status;
-	}
-	
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-	public Date getTokenExpirationDate() {
-		return tokenExpirationDate;
-	}
-
-	public void setTokenExpirationDate(Date tokenExpirationDate) {
-		this.tokenExpirationDate = tokenExpirationDate;
-	}
-
-
-	public int getAmountOfFollowers() {
-		return amountOfFollowers;
-	}
-
-	public void setAmountOfFollowers(int amountOfFollowers) {
-		this.amountOfFollowers = amountOfFollowers;
-	}
-
-	public int getAmountOfFollowee() {
-		return amountOfFollowee;
-	}
-
-	public void setAmountOfFallowee(int amountOfFollowee) {
-		this.amountOfFollowee = amountOfFollowee;
-	}
-	
-	public ArrayList<String> getLikedPosts() {
-		return likedPosts;
-	}
-
-	public void setLikedPosts(ArrayList<String> likedPosts) {
-		this.likedPosts = likedPosts;
-	}
-	
-	public boolean isLogged() {
-		return isLogged;
-	}
-
-	public void setLogged(boolean isLogged) {
-		this.isLogged = isLogged;
-	}
-
-
-	
 
 }
