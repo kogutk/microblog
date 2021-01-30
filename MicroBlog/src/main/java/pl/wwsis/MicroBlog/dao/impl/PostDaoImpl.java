@@ -126,7 +126,7 @@ public class PostDaoImpl implements PostDao {
 		Post post = this.getPostById(postId);
 
 		post.setAmountOfLike(post.getAmountOfLike() + 1);
-		entityManager.merge(post);
+		entityManager.persist(post);
 		return post;
 	}
 
@@ -135,7 +135,7 @@ public class PostDaoImpl implements PostDao {
 		Post post = this.getPostById(postId);
 
 		post.setAmountOfLike(post.getAmountOfLike() - 1);
-		entityManager.merge(post);
+		entityManager.persist(post);
 		return post;
 	}
 
@@ -144,7 +144,7 @@ public class PostDaoImpl implements PostDao {
 	public Post addCommentToPost(int postId, ArrayList<String> comments) {
 		Post post = this.getPostById(postId);
 		post.setComments(comments);
-		entityManager.merge(post);
+		entityManager.persist(post);
 		return post;
 	}
 
@@ -152,7 +152,7 @@ public class PostDaoImpl implements PostDao {
 	public Post addTagToPost(int postId, ArrayList<String> tags) {
 		Post post = this.getPostById(postId);
 		post.setTags(tags);
-		entityManager.merge(post);
+		entityManager.persist(post);
 		return post;
 	}
 }

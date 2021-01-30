@@ -257,7 +257,7 @@ public class UserDaoImpl implements UserDao {
 		ArrayList<String> arr = user.getLikedPosts();
 		arr.add(postId.toString());
 		user.setLikedPosts(arr);
-		entityManager.merge(user);
+		entityManager.persist(user);
 
 		return user;
 	}
@@ -269,7 +269,7 @@ public class UserDaoImpl implements UserDao {
 		ArrayList<String> arr = user.getLikedPosts();
 		arr.remove(postId.toString());
 		user.setLikedPosts(arr);
-		entityManager.merge(user);
+		entityManager.persist(user);
 
 		return user;
 	}
