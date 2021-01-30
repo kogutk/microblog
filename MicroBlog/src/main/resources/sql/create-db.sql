@@ -26,10 +26,10 @@ WITH 1), login varchar
 (200) NOT NULL, email varchar
 (200) NOT NULL, password varchar
 (100) NOT NULL, firstName varchar
-(200), lastName varchar
-(200), gender char
+(200) NOT NULL, lastName varchar
+(200) NOT NULL, gender char
 (1), dob date, statusId char
-(1),PRIMARY KEY
+(1),token varchar(6), tokenExpirationDate datetime, PRIMARY KEY
 (id), likedPosts int Array, amountOfFollowee int, amountOfFollowers int);
 ALTER TABLE Follower ADD CONSTRAINT FKFollower761503 FOREIGN KEY (followsUserId) REFERENCES "User" (id) on delete cascade;
 ALTER TABLE Follower ADD CONSTRAINT FKFollower936392 FOREIGN KEY (userId) REFERENCES "User" (id) on delete cascade;
@@ -37,6 +37,8 @@ ALTER TABLE Post ADD CONSTRAINT author FOREIGN KEY (authorId) REFERENCES "User" 
 ALTER TABLE "User" ADD CONSTRAINT user_unique_login UNIQUE (login);
 ALTER TABLE "User" ADD CONSTRAINT user_unique_email UNIQUE (email);
 ALTER TABLE "User" ADD CONSTRAINT user_check_login_blank CHECK (TRIM(login) <>'');
+ALTER TABLE "User" ADD CONSTRAINT user_check_firstName_blank CHECK (TRIM(firstName) <>'');
+ALTER TABLE "User" ADD CONSTRAINT user_check_lastName_blank CHECK (TRIM(lastName) <>'');
 ALTER TABLE "User" ADD CONSTRAINT user_check_email_blank CHECK (TRIM(email) <>'');
 ALTER TABLE "User" ADD CONSTRAINT user_check_password_blank CHECK (TRIM(password) <>'');
 ALTER TABLE "User" ADD CONSTRAINT user_check_gender CHECK (gender in ('M','F'));

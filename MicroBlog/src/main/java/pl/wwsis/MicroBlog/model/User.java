@@ -14,6 +14,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+
+
 import javax.validation.constraints.Email;
 
 @Data
@@ -49,10 +52,14 @@ public class User {
 	@Pattern(regexp = "(?=\\S+$).+", message = "Password must contain no whitespace.")
 	private String password;
 
+	@NotNull(message = "Firstname cannot be null")
+	@NotBlank(message = "Firstname cannot be blank")
 	@Column(name = "firstName", length = 200)
 	@Size(max = 200, message = "FirstName must be less than 200 characters")
 	private String firstName;
 
+	@NotNull(message = "Lastname cannot be null")
+	@NotBlank(message = "Lastname cannot be blank")
 	@Column(name = "lastName", length = 200)
 	@Size(max = 200, message = "LastName must be less than 200 characters")
 	private String lastName;
@@ -74,6 +81,12 @@ public class User {
 	private int amountOfFollowee;
 	
 	private boolean isLogged;
+
+    @Column(name = "token", length = 6)
+	private String token;
+
+	@Column(name="tokenExpirationDate")
+	private Date tokenExpirationDate;
 
 	@Column(name = "likedPosts")
 	private ArrayList<String> likedPosts;
