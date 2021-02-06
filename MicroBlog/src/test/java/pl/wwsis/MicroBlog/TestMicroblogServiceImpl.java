@@ -304,7 +304,7 @@ public class TestMicroblogServiceImpl {
 				() -> assertEquals("Kowalski", testUserFromLogin.getLastName()),
 				() -> assertEquals("M", testUserFromLogin.getGender().toString()),
 				() -> assertEquals("INVISIBLE", testUserFromLogin.getStatus().toString()),
-				() -> assertEquals("1990-01-01 00:01:00.0", testUserFromLogin.getDob().toString()),
+				() -> assertEquals("1990-01-01 00:00:00.0", testUserFromLogin.getDob().toString()),
 				() -> assertEquals(0, testUserFromLogin.getAmountOfFollowee()),
 				() -> assertEquals(0, testUserFromLogin.getAmountOfFollowers()));
 	}
