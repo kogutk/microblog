@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public Date string2Date(String dateAsString) throws ParseException {
-		String pattern = "yyyy-mm-dd";
+		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		Date string2Date = simpleDateFormat.parse(dateAsString);
 		return string2Date;
